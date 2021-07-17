@@ -1,0 +1,44 @@
+@use '../../../partials/variables' as *;
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-orange;
+    border: 2px solid $primary-blue;
+    border-radius: 0.5rem;
+    align-items: center;
+    width: 43vw;
+    height: 30vh;
+    &__title {
+        font-size: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: whitesmoke;
+        border-bottom: 1px solid $primary-blue;
+        padding-bottom: 0.5rem;
+    }
+
+    &__time {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: whitesmoke;
+        padding-bottom: 2rem;
+        padding-top: 1rem;
+    }
+
+    &__button {
+        background-color: $primary-aqua;
+        border: 2px solid $primary-blue;
+        border-radius: 0.5rem;
+        color: whitesmoke;
+        font-size: 1.2rem;
+        width: 6rem;
+        font-weight: 600;
+    }
+
+    &__button-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+    }
+}

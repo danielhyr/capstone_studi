@@ -1,0 +1,161 @@
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+
+.main {
+    background-color: #FFFFFF;
+    width: 90%;
+    height:auto;
+    margin: 7em auto;
+    border-radius: 4rem;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    background-image: url('../../data/images/login-background.jpg') ;
+    @include tablet {
+        width: 50%;
+    }
+    @include desktop {
+        width: 30%;
+    }
+}
+.body {
+    background-color: #aca9ad;
+    background: linear-gradient(#FFFFFF, #87888a);
+        font-family: 'Ubuntu', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+}
+.sign {
+    display: flex;
+    color: #8C55AA;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    padding-top: 1rem;
+    &__logo{
+        margin: auto;
+
+    }
+}
+
+.inputs {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+.form {
+    padding: 40px 0;
+    &-inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        
+}
+
+.pass {
+        width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+.un:focus, .pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__submit {
+        text-decoration: none;
+        cursor: pointer;
+        text-shadow: 0px 0px 3px blanchedalmond;
+        color: grey;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        text-align: end;
+        font-weight: 700;
+        border: none;
+        margin-bottom: 20px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+      }
+      
+      &__forgot {
+        cursor: pointer;
+          padding-top: 15px;
+          text-align: end;
+          font-weight: 700;
+          text-shadow: 0px 0px 1px firebrick;
+          color: grey;
+          text-decoration: none;
+          
+          &:hover {
+            transform: scale(1.1);
+        }
+      }
+
+      &__signup {
+        cursor: pointer;
+        padding-top: 15px;
+        text-align: end;
+        font-weight: 700;
+        text-shadow: 0px 0px 1px rgb(60, 148, 170);
+        color: grey;
+        text-decoration: none;
+        &:hover {
+            transform: scale(1.1);
+        }
+      }
+      }
+      
+      .signForm {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+
+

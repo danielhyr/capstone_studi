@@ -1,0 +1,101 @@
+@use '../../partials/variables' as *;
+@use '../../partials/mixin' as *;
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    background-color: $cloud;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: $mobile-margins;
+    height: 100px;
+    @include tablet {
+        padding-top: 14px;
+        flex-direction: row;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height:60px;
+    }
+    @include desktop {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+
+    &__search {
+        width: 100%;
+        border-radius: 5px;
+        height: 2rem;
+        position: relative;
+        bottom: 4px;
+        border: none;
+        padding-left: 2rem;
+        &-img{
+            position: relative;
+            bottom: 2rem;
+        }
+    }
+    &__logo {
+        width: 6rem;
+        @include tablet {
+            width: 10rem;
+            padding-bottom: 0.5rem;
+        }
+    }
+    &-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: $mobile-margins;
+        @include tablet {
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-top: 0px;
+
+        }
+
+       
+        &-input {
+            width: 50%;
+            @include tablet {
+            position: relative;
+            top: 1rem;
+            margin-right: 3rem;
+        }   
+        }
+        &__profile {
+            position: relative;
+        
+            width: 150%;
+            bottom: 9px;
+            right: 11px;
+
+        }
+        &__link{
+            background-color: white;
+            @include avatarMobile;
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            padding: 0.5rem;
+            position: absolute;
+            overflow: hidden;
+            top: 3.2rem;
+            right: 16px;
+            @include tablet {
+                @include avatarMobile;
+                position: static;
+                margin:0;
+
+
+            }
+            &:hover {
+                background-color: $instock-black;
+                color: $white;
+            }
+        }
+    }
+}

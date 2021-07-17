@@ -1,0 +1,69 @@
+.messenger {
+    height: 100vh;
+    display: flex;
+
+    &-chatMenu {
+        flex: 3.5;
+        padding: 10px;
+        background-color: blanchedalmond;
+        &-wrapper{
+
+        }
+        &__input {
+            width: 90%;
+            padding: 10px 0;
+            border: none;
+            border-bottom:1px solid gray ;
+        }
+    }
+    &-chatBox {
+        flex: 5.5;
+        padding: 10px;
+        background-color: rgb(175, 164, 148);
+
+        &-wrapper{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            height: 100%;
+        }
+        
+        &-Top {
+            overflow-y: scroll;
+            height: 100%;
+            padding-right: 10px;
+        }
+
+        &-Bottom{
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &-message {
+                width: 80%;
+                height: 90px;
+                padding: 10px;
+            }
+
+            &__button {
+                width: 70px;
+                height: 40px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: teal;
+                color: white;
+            }
+        }
+    }
+    &-chatOnline {
+        flex: 3.5;
+        padding: 10px;
+        background-color: blanchedalmond;
+
+        &-wrapper{
+            
+        }
+    }
+}

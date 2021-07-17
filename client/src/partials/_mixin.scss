@@ -1,0 +1,47 @@
+@use './variables' as *;
+
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+
+@mixin regular {
+    font-family: "Titillium";
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin demi {
+    font-family: "Titillium";
+    font-weight: 600;
+    font-style: normal;
+}
+
+@mixin bold {
+    font-family: "Titillium";
+    font-weight: 700;
+    font-style: normal;
+}
+
+// avatars
+
+@mixin avatarMobile {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    @content;
+}
+
+@mixin avatarLarge {
+    border-radius: 50%;
+    min-height: 48px;
+    min-width: 48px;
+}

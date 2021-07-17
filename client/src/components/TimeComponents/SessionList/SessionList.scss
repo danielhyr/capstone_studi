@@ -1,0 +1,12 @@
+@use '../../../partials/variables' as *;
+
+.sessionList {
+    color: whitesmoke;
+    background-color: $primary-aqua;
+    border-radius: 0.5rem;
+    width: max-content;
+
+    &__text {
+        padding: 0.6rem;
+    }
+}

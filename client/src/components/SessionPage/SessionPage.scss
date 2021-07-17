@@ -1,0 +1,57 @@
+@use '../../partials/variables' as *;
+
+
+
+.root {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    background-color: $secondary-aqua;
+
+    &__h1 {
+        color: gold;
+    }
+
+    &__img {
+        width: 170px;
+        min-height: 150px;
+        height: 10rem;
+        overflow: hidden;
+        border-radius: 50px;
+        border: solid black 4px;
+        margin-left: 2rem;
+    }
+
+    &__imgsrc {
+        width: 100%;
+        position: relative;
+    }
+}
+
+.increments {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom {
+    display: flex;
+}
+
+.Educators {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttons {
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background-color: firebrick;
+    color: black;
+}

@@ -1,0 +1,19 @@
+@use '../../partials/variables' as *;
+@use '../../partials/mixin' as *;
+
+.user {
+    display: flex;
+}
+
+.userWrapper {
+    @include avatarMobile;
+
+}
+
+.userImage {
+    min-width: 16px;
+}
+
+.bcontainers {
+    margin-left: 16px;
+}

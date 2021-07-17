@@ -1,0 +1,23 @@
+@use '../../partials/mixin' as *;
+
+.input{
+    display: flex;
+    justify-content: center;
+    &__field {
+        resize: none;
+    }
+}
+
+.post {
+    margin: 10px;
+    padding: 10px;
+    border:1px solid black;
+}
+
+.feed {
+    padding: 16px;
+
+    @include tablet {
+        padding: 30px;
+    }
+}

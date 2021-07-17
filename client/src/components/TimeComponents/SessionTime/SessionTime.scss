@@ -1,0 +1,58 @@
+@use '../../../partials/variables' as *;
+
+.session {
+    border: 2px solid $primary-blue;
+    border-radius: 0.5rem;
+    background-color: $primary-orange;
+    width: 43vw;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+
+    &__title {
+        padding-right: 2.6rem;
+        color: whitesmoke;
+        padding-left: 4rem;
+    }
+
+    &__button--left {
+        background-color: $primary-aqua;
+        color: whitesmoke;
+        width: 5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        border: 2px solid $primary-blue;
+        border-bottom-right-radius: 0%;
+        border-top-right-radius: 0%;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    &__button--right {
+        background-color: $primary-aqua;
+        color: whitesmoke;
+        width: 5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        border: 2px solid $primary-blue;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    &__timer {
+        background-color: whitesmoke;
+        box-sizing: border-box;
+        height: 2.5rem;
+        border-top: 2px solid $primary-blue;
+        border-bottom: 2px solid $primary-blue;
+        width: 5rem;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding-top: 0.35rem;
+    }
+}
