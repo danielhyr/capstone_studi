@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { signin, signup, singleuser, getusers, followusers } from '../controllers/users.js'
+import { signin, signup, singleuser, getusers, followusers, getfollowing, updateuser } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -10,7 +10,9 @@ router.post('/signup', signup);
 
 router.get('/', getusers)
 router.get('/:id', singleuser)
-router.put('/follow/:id', followusers)
+router.get('/following/:id', getfollowing)
 
+router.put('/follow/:id', followusers)
+router.patch('/update/:id', updateuser)
 
 export default router;

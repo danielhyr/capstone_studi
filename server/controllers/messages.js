@@ -5,7 +5,7 @@ import userMessage from '../models/userMessage.js'
 
 export const createMessages = async (req, res) => {
     const newMessage = new userMessage (req.body)
-
+    console.log(req.body)
     try { 
         const savedMessage = await newMessage.save()
         res.status(200).json(savedMessage)

@@ -11,9 +11,9 @@ class TimerTime extends Component {
 
     sessionDisplay = () => {
         if (this.state.isSession === true) {
-            return "Coding Hard";
+            return "In Session";
         } else {
-            return "Breaking Hard";
+            return "In Break";
         }
     };
 
@@ -103,13 +103,13 @@ class TimerTime extends Component {
                 </div>
                 <div className='timer__button-container'>
                     <button className='timer__button' onClick={this.startPlay} disabled={this.props.isSession === true ? "disabled" : ""}>
-                        Start Your Session
+                        Start
                     </button>
                     <button className='timer__button' onClick={this.stopTimer}>
-                        Get Some Rest...
+                        Break
                     </button>
                     <button className='timer__button' onClick={this.resetTimer}>
-                        Refresh Timer
+                        Refresh
                     </button>
                 </div>
             </section>

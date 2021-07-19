@@ -3,10 +3,9 @@ import { Component } from 'react'
 import SessionTime from '../TimeComponents/SessionTime/SessionTime'
 import TimerTime from '../TimeComponents/TimerTime/TimerTime'
 import BreakTime from '../TimeComponents/BreakTime/BreakTime'
-import SessionList from '../TimeComponents/SessionList/SessionList'
-import DisplayQuotes from '../TimeComponents/DisplayQuotes/DisplayQuotes';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import HeroFooter from '../HeroFooter/HeroFooter';
+import StudentsOnline from '../TimeComponents/StudentsOnline/StudentsOnline'
 
 class SessionPage extends Component {
 
@@ -24,7 +23,10 @@ class SessionPage extends Component {
     },
     isSession: false,
     amountTime: 5000,
+    user : JSON.parse(localStorage.getItem('profile'))
   }
+
+
 
   increaseBreak = () => {
     this.setState((prevState) => {
@@ -134,10 +136,8 @@ class SessionPage extends Component {
       <div className="root">
         <div className="Educators">
           <div>
-          <h1 className="root__h1">You are in Session for </h1>
-          <SessionList sessionAmount={this.state.sessionAmount} breakAmount={this.state.breakAmount} />
           </div>
-
+      <StudentsOnline/>
         </div>
         <div className="increments">
           <SessionTime

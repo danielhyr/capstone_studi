@@ -1,4 +1,5 @@
 @use '../../partials/mixin' as *;
+@use '../../partials/variables' as *;
 
 .input{
     display: flex;
@@ -16,7 +17,7 @@
 
 .feed {
     padding: 16px;
-
+    background-color: $light-grey;
     @include tablet {
         padding: 30px;
     }

@@ -5,9 +5,16 @@
     &-Top{
         display: flex;
     }
+    &-wrapper{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url("../../../data/images/default.png");
+        background-size: cover;
+    }
     &__Img {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 10px;

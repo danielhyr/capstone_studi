@@ -1,0 +1,40 @@
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+
+
+.profModal{
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    height: 100%;
+
+        &-form {
+            background-color: white;
+            min-height: 300px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            @include tablet {
+                min-height: 262px;
+                width: auto;
+                width: 672px;
+                position: relative;
+            }
+        }
+
+        &__input{
+            margin-top: 20px;
+        }
+}

@@ -24,7 +24,7 @@ import { createPost} from '../../actions/posts'
         e.preventDefault();
         props.onSubmitHandler(e)
         const newInputFields ={...inputField,
-          name: user?.result?.name,  timestamp: Date.now(), title: props.subject,
+          name: user?.result.name,  timestamp: Date.now(), image: user?.result.image, title: props.subject,
           schedule: inputField.schedule.map(field => {
           return field;
         })}
@@ -56,9 +56,12 @@ import { createPost} from '../../actions/posts'
 
     const handleRemoveFields = (id, e) => {
         e.preventDefault()
-        const values  = [...inputField];
+        const values  = [...inputField.schedule];
         values.splice(values.findIndex(value => value.id === id), 1);
-        setInputField(values);
+        const newInputFields = {...inputField, 
+        schedule: values}
+        setInputField(newInputFields);
+
       }
 
 
@@ -82,7 +85,7 @@ import { createPost} from '../../actions/posts'
 
              <button onClick={handleAddFields}>Add a new activity</button>
                  { inputField.schedule.map((inputField, index) => (
-                     <div key = {index} className="inputs">
+                     <div key = {index} className="cinputs">
                         <div>
                         <TextField
                          name ="time"
@@ -91,7 +94,7 @@ import { createPost} from '../../actions/posts'
                          value = {inputField.time}
                          onChange = {event => handleChangeInput(inputField.id, event)}
                          /></div>
-                         <div className="inputs__activityField">
+                         <div className="cinputs__activityField">
                         <TextField
                          name ="activity"
                          label= "Activity"
@@ -101,9 +104,8 @@ import { createPost} from '../../actions/posts'
                          />
                          </div>
                          <div>
-                         <button onClick={(event) => handleRemoveFields(inputField.id, event)}>Remove</button>
-                         <button onClick={(event) => handleRemoveFields(inputField.id, event)}>Check Complete</button>
-                         <button onClick={(event) => handleRemoveFields(inputField.id, event)}>Start this Task</button>
+                         <button className = "cinputs__remove"onClick={(event) => handleRemoveFields(inputField.id, event)}>Remove</button>
+      
                          </div>
                      </div>
                  ))}

@@ -1,10 +1,10 @@
 import React from 'react'
+import './LoginPage.scss'
 
 function input({name, handleChange, label, type}) {
     return (
-        <div>
-        <label htmlFor={name}>{label}</label>
-      <input type = {type} name = {name} onChange = {handleChange}/>
+        <div className="sinput">
+      <input className = "sinput__boxes" type = {type} name = {name} onChange = {handleChange} placeholder={label}/>
         </div>
     )
 }

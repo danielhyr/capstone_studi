@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import CalendarModal from '../CalendarModal/CalendarModal';
+import './InitialForm.scss'
 
 function InitialForm(props) {
 
@@ -21,11 +22,11 @@ function InitialForm(props) {
 
     return (
         <>
-        <form className="input" onSubmit = {onSubmitHandler}>
-        Do you feel motivated today(random array of string questions pull from backend every time)?
-        <textarea className="input__field" name="create" required></textarea>
-        <button >Start</button>
-        
+        <form className="standup" onSubmit = {onSubmitHandler}>
+        <div className="standup-type">
+        <textarea className="standup__field" name="create" required placeholder = "What did you do yesterday, what will you do today, and what are your blockers?"></textarea>
+        <button className="standup__button">Start</button>
+        </div>
     </form>
     <CalendarModal show = {show} onSubmitHandler = {onCloseHandler} subject = {subject}/>
     </>

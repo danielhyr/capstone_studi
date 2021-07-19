@@ -1,18 +1,18 @@
-import PostMessage from '../models/postMessage.js';
+import Post from '../models/posts.js';
 import mongoose from 'mongoose';
 
 
     export const getPosts = async (req, res) => {
         try {
-            const postMessages = await PostMessage.find();
-            res.status(200).json(postMessages);
+            const posts = await Post.find();
+            res.status(200).json(posts);
         } catch (error) {
             res.status(404).json({message: error.message})
         }
     }
         export const createPost = async (req, res) => {
           const post = req.body;
-          const newPost = new PostMessage({...post, creator: req.userId, createdAt: new Date().toISOString() });
+          const newPost = new Post({...post, creator: req.userId, createdAt: new Date().toISOString() });
           try {
               await newPost.save();
               res.status(201).json(newPost);
@@ -26,8 +26,8 @@ import mongoose from 'mongoose';
             const {title, timestamp, schedule } = req.body
             if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No post with this id")
             const updatedPost = { title, timestamp, schedule, _id: id };
-            await PostMessage.findByIdAndUpdate(id, updatedPost , {new: true});
-            res.json(updatedPost);
+            await Post.findByIdAndUpdate(id, updatedPost , {new: true});
+            res.status(201).json(updatedPost);
           }
       
           export const deletePost = async (req, res) => {
@@ -35,7 +35,7 @@ import mongoose from 'mongoose';
               
               if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No post with this id")
 
-              await PostMessage.findByIdAndRemove(id);
+              await Post.findByIdAndRemove(id);
 
               res.json( {message: 'Post deleted successfully'} )
           }
@@ -57,7 +57,7 @@ import mongoose from 'mongoose';
                 post.likes = post.likes.filter((id) => id !== String(req.userId))
             }
 
-            const updatedPost = await PostMessage.findByIdAndUpdate(id,  post , { new: true} )
+            const updatedPost = await Post.findByIdAndUpdate(id,  post , { new: true} )
 
             res.json(updatedPost)
           }

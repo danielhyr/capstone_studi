@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import express from 'express'
 import Conversation from '../models/conversations.js';
 
 export const createConvo = async (req, res) => {
@@ -22,6 +21,22 @@ export const createConvo = async (req, res) => {
         const conversation = await Conversation.find({
             member: { $in: [req.params.userId] },
         })
+        res.status(200).json(conversation)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+
+  }
+
+  
+  export const findconvo = async (req, res) => {
+    console.log(req.params)
+    try { 
+        const conversation = await Conversation.findOne({
+            member: { $all: [req.params.firstUserId, req.params.secondUserId]}
+        })
+
+        console.log(conversation)
         res.status(200).json(conversation)
     } catch (error) {
         res.status(500).json(error)

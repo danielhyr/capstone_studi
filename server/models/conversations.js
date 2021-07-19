@@ -5,9 +5,9 @@ const conversationSchema = mongoose.Schema(
         member: {
             type: Array,
         },
-    }, {timestamps: true}
+    }, {timeStamps: true}
 )
 
-const PostMessage = mongoose.model('Conversation', conversationSchema);
+const Conversation = mongoose.model('Conversation', conversationSchema);
 
-export default PostMessage;
+export default Conversation;

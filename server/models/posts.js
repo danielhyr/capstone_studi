@@ -15,9 +15,10 @@ const postSchema = mongoose.Schema({
     message: String,
     creator: String,
     name:String,
-
+    image:String,
+    checked: Boolean,
 })
 
-const PostMessage = mongoose.model('PostMessage', postSchema);
+const Posts = mongoose.model('PostMessage', postSchema);
 
-export default PostMessage;
+export default Posts;

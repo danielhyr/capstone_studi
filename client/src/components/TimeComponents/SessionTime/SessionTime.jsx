@@ -17,7 +17,8 @@ function SessionTime(props) {
 
     return (
         <section className='session'>
-            <h3 className='session__title'>Coding Time!</h3>
+            <h3 className='session__title'>How long is your session going to be?</h3>
+            <div className='session-timer'>
             <button
                 className='session__button--left'
                 onClick={decreaseCounter}
@@ -33,6 +34,7 @@ function SessionTime(props) {
             >
                 Up
             </button>
+            </div>
         </section>
     );
 }

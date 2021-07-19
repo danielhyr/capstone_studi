@@ -3,14 +3,17 @@
 @use "../../partials/variables" as *;
 
 
+
 .main {
     background-color: #FFFFFF;
     width: 90%;
-    height:auto;
-    margin: 7em auto;
+    height: auto;
+    min-height: 400px;
+    max-height: 700px;
+    margin: auto auto;
     border-radius: 4rem;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    background-image: url('../../data/images/login-background.jpg') ;
+
     @include tablet {
         width: 50%;
     }
@@ -22,9 +25,11 @@
     background-color: #aca9ad;
     background: linear-gradient(#FFFFFF, #87888a);
         font-family: 'Ubuntu', sans-serif;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     position: absolute;
+
+    background-image: url('../../data/images/login-background.jpg')
 }
 .sign {
     display: flex;
@@ -36,7 +41,10 @@
     &__logo{
         margin: auto;
 
+    
     }
+
+
 }
 
 .inputs {
@@ -65,7 +73,10 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .form {
-    padding: 40px 0;
+    @include tablet {
+        padding: 40px 0;
+
+    }
     &-inputs {
         display: flex;
         flex-direction: column;
@@ -111,42 +122,41 @@ font-family: 'Ubuntu', sans-serif;
         color: grey;
         padding-top: 15px;
         padding-bottom: 15px;
-
-        text-align: end;
+        width: 100%;
+        text-align: center;
         font-weight: 700;
         border: none;
         margin-bottom: 20px;
+        transition:background-color 0.7s ;
 
         &:hover {
             transform: scale(1.1);
+            background-color: skyblue;
         }
 
       }
       
       &__forgot {
-        cursor: pointer;
-          padding-top: 15px;
-          text-align: end;
-          font-weight: 700;
-          text-shadow: 0px 0px 1px firebrick;
-          color: grey;
-          text-decoration: none;
-          
-          &:hover {
-            transform: scale(1.1);
-        }
+     
       }
 
       &__signup {
-        cursor: pointer;
-        padding-top: 15px;
-        text-align: end;
-        font-weight: 700;
-        text-shadow: 0px 0px 1px rgb(60, 148, 170);
-        color: grey;
         text-decoration: none;
+        cursor: pointer;
+        text-shadow: 0px 0px 3px blanchedalmond;
+        color: grey;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        border: none;
+        margin-bottom: 20px;
+        transition:background-color 0.7s ;
+
         &:hover {
             transform: scale(1.1);
+            background-color: skyblue;
         }
       }
       }
@@ -159,3 +169,26 @@ font-family: 'Ubuntu', sans-serif;
 
 
 
+      .sinput{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        &__boxes{
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+      }

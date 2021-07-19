@@ -5,15 +5,19 @@
     border-radius: 0.5rem;
     background-color: $primary-orange;
     width: 43vw;
-    height: 5rem;
     display: flex;
     align-items: center;
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
+    flex-direction: column;
+
+    &-timer{
+        display: flex;
+        align-items: center;
+    }
     &__title {
-        padding-right: 1rem;
         color: whitesmoke;
-        padding-left: 2rem;
+        text-align: center;
     }
 
     &__button--left {

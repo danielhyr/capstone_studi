@@ -12,7 +12,7 @@ const userMessageSchema = mongoose.Schema(
         text: {
             type: String,
         },
-
+        image: String
     }, 
     {timestamps: true}
 );

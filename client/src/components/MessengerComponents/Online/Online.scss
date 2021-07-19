@@ -1,34 +1,77 @@
 .online {
+        
+    &-Friend {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 10px;
+    }
     
-&-Friend {
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  &-ImgContainer {
-    position: relative;
-    margin-right: 10px;
-  }
-  
-  &-Img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid white;
-  }
-  
-  &-Badge {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: limegreen;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-  }
-  
+    &-ImgContainer {
+        position: relative;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-image: url('../../../data/images/default.png');
+        background-size: cover;
+        overflow: hidden;
+    }
+    
+    &-Img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid white;
+    }
+    
+    &-Badge {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: limegreen;
+        position: absolute;
+        top: 10px;
+        right: 2px;
+    }
+    
 }
+
+.offline {
+    
+    &-Friend {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      
+      &-ImgContainer {
+        position: relative;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-image: url('../../../data/images/default.png');
+        background-size: cover;
+        overflow: hidden;
+      }
+      
+      &-Img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid white;
+      }
+      
+      &-Badge {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: rgb(180, 31, 31);
+        position: absolute;
+        top: 10px;
+        right: 2px;
+      }
+      
+    }

@@ -17,7 +17,8 @@ function BreakTime(props) {
 
     return (
         <section className='break'>
-            <h3 className='break__title'>Let's take a Break!</h3>
+            <h3 className='break__title'>How long is your break going to be?</h3>
+            <div className = "break-timer">
             <button
                 className='break__button--left'
                 onClick={decreaseCounter}
@@ -33,6 +34,7 @@ function BreakTime(props) {
             >
                 Up
             </button>
+            </div>
         </section>
     );
 }

@@ -1,0 +1,41 @@
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+.profile{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+    @include tablet{
+        margin: 2rem 6rem;
+        border: 1px solid $cloud;
+        border-radius: 4px;
+    }
+    &-desc{
+        display: flex;
+        flex-direction: column
+        ;
+        border: 1px solid $cloud;
+        padding: 1rem;
+        border-radius: 4px;
+    }
+    &__name{
+        margin-top: 0;
+    }
+    &-pic {
+        @include avatarMobile;
+            min-width: 100px;
+            min-height: 100px;
+            background-image: url('../../data/images/default.png');
+            background-size: cover;
+            overflow: hidden;
+    }
+    &__users{
+        padding: 10px;
+    }
+
+    &-image{
+        width: 100px;
+        height: 100px;
+    }
+}

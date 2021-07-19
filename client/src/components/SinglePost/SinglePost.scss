@@ -1,0 +1,138 @@
+@use '../../partials/variables' as *;
+@use '../../partials/mixin' as *;
+
+.post {
+    background-color: $smoke;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+    @include tablet {
+        flex-direction: row;
+        height: 12rem;
+
+    }
+    &-standup{
+        min-width: 200px;
+        border:2px solid $cloud;
+        padding: 16px;
+        border-radius: 4px;
+        @include tablet {
+            margin:0 10px;
+        }
+    }
+    &-buttons{
+        display: flex;
+        position: absolute;
+        top: -23px;
+        left: -20px;
+        &__edit{
+            width: 1.5rem;
+        }
+        &__del{
+            width: 1.5rem;
+            margin-left: 0.5rem;
+        }
+    }
+    &-avatarname{
+        display: flex;
+        padding-top: 15px;
+    }
+    &-avatar{
+        overflow: hidden;
+        @include avatarMobile;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        background-image: url("../../data/images/default.png");
+        background-size: cover;
+    }
+    &-image{
+        width: 50px;
+        height: 50px;
+    }
+    &-left{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        bottom: 0px;
+        justify-content: space-between;
+        border:2px solid $cloud;
+        padding: 16px;
+        @include tablet {
+           width: 250px;
+        }
+       
+
+        &-bottom{
+            bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            @include tablet {
+
+            }
+            &__para{
+                margin: 0px;
+            }
+
+     
+        }
+    }
+}
+
+.schedulePost{
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+    border:1px solid grey;
+    padding: 10px;
+    background-color: rgb(207, 115, 115);
+    border-radius: 5px;
+    &-span{
+        padding: 4px 0;
+        border-bottom: 1px solid rgb(134, 88, 88);
+        display: flex;
+        justify-content: center;
+        &__spans{
+            padding: 0 18px;
+            font-weight: 700;
+            color: $smoke;
+        }
+    }
+    &__list{
+        display: flex;
+        height: 30px;
+        padding: 10px 0 0;
+        justify-content: space-between;
+    }
+
+    &__time{
+        padding:0 10px;
+        border: 1px solid $primary-blue;
+        width: 3.5rem;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        background-color: $smoke;
+        border-radius: 4px;
+
+    }
+    &__activity{
+        padding:0 10px;
+        border: 1px solid $secondary-blue;
+        overflow: hidden;
+        width: 3.5rem;
+        text-align: center;
+        justify-content: center;
+            background-color: $smoke;
+        border-radius: 4px;
+    }
+    &__header{
+        margin: 0 1rem;
+        text-align: center;
+        color: $smoke;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgb(134, 88, 88);
+    }
+}

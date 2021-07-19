@@ -1,0 +1,20 @@
+@use '../../partials/variables' as *;
+@use '../../partials/mixin' as *;
+
+.comments {
+    display: flex;
+    &-wrap{
+        overflow: hidden;
+        @include avatarMobile;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        background-image: url("../../data/images/default.png");
+        background-size: cover;
+    }
+
+    &__image{
+        width: 50px;
+        height: 50px;
+    }
+}

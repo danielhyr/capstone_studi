@@ -4,6 +4,16 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
+
+    &__wrapper{
+      background-image: url("../../../data//images/default.png");
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 8px;
+    }
     &__Img {
         width: 40px;
         height: 40px;

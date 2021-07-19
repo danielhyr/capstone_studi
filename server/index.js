@@ -7,7 +7,7 @@ import postRoutes from './routes/posts.js'
 import userRoutes from './routes/users.js'
 import conversationRoutes from './routes/conversations.js'
 import messageRoutes from './routes/messages.js'
-
+import commentRoutes from './routes/comments.js'
 const app = express()
 
 dotenv.config()
@@ -19,7 +19,7 @@ app.use('/posts', postRoutes)
 app.use('/users', userRoutes)
 app.use('/conversations', conversationRoutes)
 app.use('/messages', messageRoutes)
-
+app.use('/comments', commentRoutes)
 //port
 
 

@@ -1,0 +1,42 @@
+@use '../../partials/variables' as *;
+@use '../../partials/mixin' as *;
+
+.standup {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $cloud;
+    padding: 0px 16px;
+    background-color: $smoke;
+    border-radius: 4px;
+    @include tablet {
+        padding: 20px 30px;
+    }
+    @include desktop {
+        padding: 30px 60px;
+
+    }
+    &-type{
+        display: flex;
+        width: 100%;
+        padding: 16px 0;
+        justify-content: center;
+
+    }
+    &__field {
+        width: 80%;
+        height: 4rem;
+        resize: none;
+    }
+
+    &__button{
+        padding: 16px;
+        background-color: lightblue;
+        border: 0.5px solid grey;
+        border-radius: 3px;
+    }
+    &__header{
+        font-size: 1.5rem;
+        width: 90%;
+    }
+}
+

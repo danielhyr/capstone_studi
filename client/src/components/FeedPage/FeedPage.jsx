@@ -1,18 +1,19 @@
-import React from 'react'
 import './FeedPage.scss'
 import HeroFooter from '../HeroFooter/HeroFooter';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import PostsList from '../PostsList/PostsList';
 import InitialForm from '../InitialForm/InitialForm';
+import { useSelector } from 'react-redux'
 
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getPosts} from '../../actions/posts'
 import LoginPage from '../LoginPage/LoginPage'
+import HeroImage from '../HeroImage/HeroImage';
 function FeedPage({history}) {
 
-    const [currentId, setCurrentId] = useState(0);
-
+  const [currentId, setCurrentId] = useState(0);
+  const posts = useSelector(state => state.posts)
   const dispatch = useDispatch()
 
 
@@ -30,10 +31,10 @@ function FeedPage({history}) {
           <>
         <HeroHeader history = {history}/>
         <section className="feed">
-   
+          <HeroImage/>
         <InitialForm />
         
-        <PostsList setCurrentId={setCurrentId} />
+        <PostsList whoose = {"All"} setCurrentId={setCurrentId} posts = {posts} />
 
      
         </section>
