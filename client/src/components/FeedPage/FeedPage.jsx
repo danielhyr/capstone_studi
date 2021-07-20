@@ -29,7 +29,7 @@ function FeedPage({history}) {
 
         {user ?(      
           <>
-        <HeroHeader history = {history}/>
+        <HeroHeader />
         <section className="feed">
           <HeroImage/>
         <InitialForm />

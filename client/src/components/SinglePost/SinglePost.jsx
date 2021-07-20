@@ -7,17 +7,22 @@ import { useLocation, useHistory } from 'react-router-dom'
 import likeIcon from '../../data/Icons/Icon-likes.svg'
 import deleteIcon from '../../data/Icons/delete.svg'
 import editIcon from '../../data/Icons/edit.svg'
+import checkIcon from '../../data/images/checkmark.png'
 
 import './SinglePost.scss'
+import axios from 'axios';
 
 function SinglePost(props) {
 
     const [show, setShow] = useState(false)
-
+    const [post, setPost] = useState(props.post)
     const history = useHistory()
     const dispatch = useDispatch()
 
     const user = JSON.parse(localStorage.getItem('profile'))
+
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -29,55 +34,89 @@ function SinglePost(props) {
         props.onDeleteHandler()
     }
 
+    const handleClick = async () => {
+
+        if (post.creator === user.result._id) {
+            if (!post.checked) {
+                try {
+                    const truthy = { boolean: true }
+                    const res = await axios.patch(`http://localhost:3000/posts/check/${props.post._id}`, truthy)
+                    setPost(res.data)
+                } catch (error) {
+                    console.log(error)
+                }
+
+            } else {
+                try {
+                    const falsey = { boolean: false }
+                    const res = await axios.patch(`http://localhost:3000/posts/check/${props.post._id}`, falsey)
+                    setPost(res.data)
+                } catch (error) {
+                    console.log(error)
+                }
+
+            }
+
+
+        }
+    }
+    console.log(props.post.timestamp)
     return (
         <>
             <div className="post">
                 <div className="post-left">
 
-                    <div className="post-buttons">
 
-                        {(user?.result.googleId === props.post?.creator || user?.result._id === props.post?.creator) && (
-                            <>
-
-                                <img onClick={handleSubmit} className="post-buttons__edit" src={editIcon} />
-                                <img className = "post-buttons__del"src= {deleteIcon}  onClick={handleDelete}/>
-                            </>
-                        )}
-                    </div>
                     <div className="post-avatarname">
                         <div className="post-avatar" onClick={() => { history.push(`/profile/${props.post?.creator}`) }}>
                             <img className="post-image" src={props.post.image}></img>
                         </div>
                         <div>
-                            <p className="post-left-bottom__para">
-                                {moment(props.post.timestamp).fromNow()}
-                            </p>
-                            <p>
+                            <p className="post-left-bottom__name">
                                 {props.post.name}
                             </p>
+                            <p className="post-left-bottom__para">
+                                Posted {moment(props.post.timestamp).fromNow()}
+                            </p>
+
                         </div>
                     </div>
 
 
 
+
                     <div className="post-left-bottom">
 
-                        <div className="post-left-bottom__para"> {props.post.likes?.length}<img src={likeIcon} onClick={() => { dispatch(likePost(props.post._id)) }}>
-                        </img>        
-                        </div>
-            
+                        <div className="post-left-bottom__icons"> {props.post.likes?.length} likes <img className="post-left-bottom__like" src={likeIcon} onClick={() => { dispatch(likePost(props.post._id)) }}>
+                        </img>
 
-              
+                            {(user?.result.googleId === props.post?.creator || user?.result._id === props.post?.creator) && (
+                                <>
+
+                                    <img onClick={handleSubmit} className="post-left-bottom__edit" src={editIcon} />
+                                    <img className="post-left-bottom__del" src={deleteIcon} onClick={handleDelete} />
+                                </>
+                            )}
+
+                        </div>
+
+
+
                     </div>
                 </div>
 
                 <div className="post-standup">
                     <h3 className="post-standup__header">The Standup</h3>
                     <p className="post-standup__content">{props.post.title}</p>
-                    <button onClick={() => { show ? setShow(false) : setShow(true) }}>show comments</button>
+                    <button className="post-standup__show"onClick={() => { show ? setShow(false) : setShow(true) }}>show comments</button>
                 </div>
 
-                <div className="schedulePost">
+                <div className="schedulePost" onClick={handleClick}>
+                    {post.checked ?
+                        <div className="checked">
+                            <img className="checked__img" src={checkIcon} />
+                        </div>
+                        : null}
                     <h3 className="schedulePost__header" >Schedule</h3>
                     <div className="schedulePost-span">
                         <span className="schedulePost-span__spans">Time</span>

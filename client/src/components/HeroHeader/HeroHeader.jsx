@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Logo from "../../data/images/logo.svg";
 import Search from "../../data/Icons/Icon-search.svg"
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory, Link } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import decode from 'jwt-decode'
 
@@ -56,17 +55,20 @@ const HeroHeader = () => {
                 <img className="header-container__profile" src={user.result.image} ></img>
               </div>
               <ul className={show}>
+
                 <li className="showtrue__menu" onClick={() => { history.push(`/profile/${user.result._id}`) }}>{user.result.name}
                 </li>
                 <li className="showtrue__menu" onClick={() => { history.push('/session') }}>Start a Session</li>
-                <div> <li className="showtrue__menu" onClick={() => { history.push(`/messenger`) }}>Chat with friends</li></div>
+                <div  onClick={() => { history.push(`/messenger`) }}> <li className="showtrue__menu">Chat with friends</li>
+                
+                </div>
                
-                <button onClick={logout}>Logout</button>
+                <button className = "dropdown__button"onClick={logout}>Logout</button>
               </ul>
             </div>
           ) : (
             <div>
-              <button onClick={() => { history.push('/') }}>Login</button>
+              <button className = "dropdown__button "onClick={() => { history.push('/') }}>Login</button>
             </div>
           )}
 

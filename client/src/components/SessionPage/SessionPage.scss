@@ -7,8 +7,10 @@
     height: 100%;
     align-items: center;
     flex-direction: column;
-    background-color: $secondary-aqua;
+    background-color: $cloud;
     padding: 2rem;
+    border-radius: 7px;
+    margin: 1rem;
     &__h1 {
         color: gold;
     }

@@ -1,8 +1,31 @@
 @use '../../partials/variables' as *;
 @use '../../partials/mixin' as *;
 
+
+.commentWrap {
+    display: flex;
+flex-direction: column;
+background-color: $back;
+padding: 10px;
+}
+
 .comments {
     display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        &__text{
+            width: 50%;
+            min-height: 4rem;
+            border: 1px solid black;
+        }
+        &__button{
+            min-height: 4rem;
+            background-color: lightblue;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
     &-wrap{
         overflow: hidden;
         @include avatarMobile;
@@ -11,6 +34,8 @@
         display: flex;
         background-image: url("../../data/images/default.png");
         background-size: cover;
+        margin-right: 10px;
+
     }
 
     &__image{

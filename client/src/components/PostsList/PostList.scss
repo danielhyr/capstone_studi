@@ -2,9 +2,10 @@
 @use '../../partials/variables' as *;
 
 .posts{
-    background-color: $mist;
+    background-color: $smoke;
     padding: 20px;
     margin-top: 4rem;
+    border-radius: 5px;
     &__top{
         display: flex;
         justify-content: center;

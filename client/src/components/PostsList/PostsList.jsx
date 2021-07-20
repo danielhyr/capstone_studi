@@ -9,7 +9,7 @@ function PostsList({ setCurrentId, posts, whoose }) {
     const [id, setId] = useState(null)
     const [post, setPost] = useState(null)
 
-
+    console.log(posts)
     const [search, setSearch] = useState('')
 
     useEffect(() => {

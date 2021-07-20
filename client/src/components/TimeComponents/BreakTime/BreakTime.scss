@@ -3,7 +3,7 @@
 .break {
     border: 2px solid $primary-blue;
     border-radius: 0.5rem;
-    background-color: $primary-orange;
+    background-color: $beige;
     width: 43vw;
     display: flex;
     align-items: center;
@@ -16,12 +16,12 @@
         align-items: center;
     }
     &__title {
-        color: whitesmoke;
+        color: black;
         text-align: center;
     }
 
     &__button--left {
-        background-color: $primary-aqua;
+        background-color: $cooler;
         color: whitesmoke;
         width: 5rem;
         height: 2.5rem;
@@ -34,7 +34,7 @@
     }
 
     &__button--right {
-        background-color: $primary-aqua;
+        background-color: $cooler;
         color: whitesmoke;
         width: 5rem;
         height: 2.5rem;

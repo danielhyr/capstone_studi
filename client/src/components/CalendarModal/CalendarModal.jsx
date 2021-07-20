@@ -10,10 +10,12 @@ import { createPost} from '../../actions/posts'
 
 
     const [inputField, setInputField] = useState({
+      checked: false,
       title: props.subject,
       timestamp: null,
       schedule:[
       { id: uuidv4(), time:'', activity: '', },
+     
   ]})
   
   const user = JSON.parse(localStorage.getItem('profile'))

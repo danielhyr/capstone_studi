@@ -8,6 +8,7 @@
     justify-content: space-between;
     flex-direction: column;
     padding: 20px;
+    margin: 2rem 10px;
     @include tablet {
         flex-direction: row;
         height: 12rem;
@@ -18,8 +19,20 @@
         border:2px solid $cloud;
         padding: 16px;
         border-radius: 4px;
+        margin:18px 0px;
+        background-color: $cool;
+        position: relative;
+
         @include tablet {
             margin:0 10px;
+            flex-grow: 4;
+        }
+        &__show{
+            padding: 10px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: -15px;
+            background-color: $mist;
         }
     }
     &-buttons{
@@ -27,21 +40,19 @@
         position: absolute;
         top: -23px;
         left: -20px;
-        &__edit{
-            width: 1.5rem;
-        }
-        &__del{
-            width: 1.5rem;
-            margin-left: 0.5rem;
-        }
+
     }
     &-avatarname{
         display: flex;
-        padding-top: 15px;
+        padding-bottom: 40px;
+        justify-content: space-between;
+        font-weight: 700;
+        border-bottom: 1px solid $charcoal;
     }
     &-avatar{
         overflow: hidden;
         @include avatarMobile;
+        min-width: 50px;
         width: 50px;
         height: 50px;
         display: flex;
@@ -60,6 +71,8 @@
         justify-content: space-between;
         border:2px solid $cloud;
         padding: 16px;
+        background-color: $beige;
+        
         @include tablet {
            width: 250px;
         }
@@ -72,10 +85,51 @@
             @include tablet {
 
             }
+            &__icons{
+                display: flex;
+                justify-content: space-between;
+                padding-top: 18px;
+            }
+            &__edit{
+                width: 1.5rem;
+                &:hover{
+                    transform: scale(1.1);
+                    filter: invert(27%) sepia(87%) saturate(2133%) hue-rotate(215deg) brightness(96%) contrast(87%);
+                  }
+                padding-bottom: 2px;
+                position: relative;
+            }
+            &__del{
+                width: 1.5rem;
+                &:hover{
+                    transform: scale(1.2);
+                    filter: invert(26%) sepia(76%) saturate(7471%) hue-rotate(355deg) brightness(99%) contrast(128%);
+                  
+                  }
+            }
+            &__like {
+                width: 1.5rem;
+                &:hover{
+                    transform: scale(1.1);
+                    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+                  }
+            }
             &__para{
                 margin: 0px;
             }
+            &__name{
+                margin: 0px;
+                font-size: 18px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
 
+                overflow: hidden;
+                text-shadow: 0px 2px 0 rgb(223, 227, 229), 3px 1px 0 rgba(0, 0, 0, 0.25);
+                color: #3f3f3f;
+                border-bottom: 1px solid $cloud;
+            }
+     
      
         }
     }
@@ -116,6 +170,7 @@
         justify-content: center;
         background-color: $smoke;
         border-radius: 4px;
+        min-height: 1rem;
 
     }
     &__activity{
@@ -127,6 +182,7 @@
         justify-content: center;
             background-color: $smoke;
         border-radius: 4px;
+        min-height: 1rem;
     }
     &__header{
         margin: 0 1rem;
@@ -134,5 +190,17 @@
         color: $smoke;
         padding-bottom: 8px;
         border-bottom: 1px solid rgb(134, 88, 88);
+    }
+}
+
+.checked{
+    position: absolute;
+
+    &__img{
+        width: 4rem;
+        @include tablet {
+            width: 12rem;
+
+        }
     }
 }

@@ -43,7 +43,6 @@ function MessengerPage() {
     useEffect(() => {
         socket.current = io("ws://localhost:8900")
         socket.current.on("getMessage", data => {
-            console.log(data)
             setArrivalMessage({
                 sender: data.senderId,
                 text: data.text,
@@ -64,7 +63,6 @@ function MessengerPage() {
         })
     }, [user.result._id])
 
-    console.log(onlineUsers)
 
     useEffect(() => {
 
@@ -72,9 +70,7 @@ function MessengerPage() {
             try {
                 console.log("change")
                 const res = await axios.get("/conversations/" + user.result._id)
-
                 setConversations(res.data)
-                console.log(res)
             } catch (error) {
 
             }
@@ -175,14 +171,11 @@ function MessengerPage() {
                                 </div>
                             </>
                             : <span>Open a conversation to start a chat</span>}
-
-
                     </div>
                 </div>
 
                 <div className="messenger-chatOnline">
-
-                    <div className="messenger-chatOnline-wrapper"> online
+                    <div className="messenger-chatOnline-wrapper"> Standmates
                     </div>
                     <Online onlineUsers={onlineUsers}
                         currentId={user.result._id}

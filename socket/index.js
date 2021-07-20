@@ -55,9 +55,9 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("a user has disconnected!")
         removeUser(socket.id)
+        removetimeUser(socket.id)
         io.emit("getUsers", users)
 
-    
     })
 
        //  take user id from the array
@@ -68,19 +68,9 @@ io.on("connection", (socket) => {
     })
 
 
-    // send and get message
 
-
-
-    socket.on("disconnectTime", () => {
-        console.log("a user has disconnected!")
-        removetimeUser(socket.id)
-        io.emit("getTimeUsers", timeusers)
-
-    })
 })
 
 
-// Time component
 
 

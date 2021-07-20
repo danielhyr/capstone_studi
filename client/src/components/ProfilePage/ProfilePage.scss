@@ -2,40 +2,115 @@
 @use "../../partials/mixin" as *;
 @use "../../partials/variables" as *;
 
+.profileOver{
+    background-color: $back;
+    padding: 30px;
+}
+
 .profile{
     display: flex;
     padding: 2rem;
     justify-content: space-between;
+    background-color: $beige;
+    flex-direction: column;
+    margin:10px 10px 0px;
     @include tablet{
+        flex-direction: row;
         margin: 2rem 6rem;
         border: 1px solid $cloud;
         border-radius: 4px;
+    }
+
+    &__about{
+        padding: 20px;
+
+    }
+
+    &__interests{
+        padding: 20px;
+    }
+
+    &-right{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $charcoal;
+        background-color: $cool;
+        padding: 16px;
+        border-radius: 5px;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+        @include tablet {
+            margin-bottom: 0px;
+            flex-grow: 0.5;
+            justify-content: space-evenly;
+
+        }
+    }
+    &__details {
+        display: flex;
+        @include tablet {
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: 2px solid $charcoal;
+        }
     }
     &-desc{
         display: flex;
         flex-direction: column
         ;
+        text-align: center;
         border: 1px solid $cloud;
         padding: 1rem;
         border-radius: 4px;
+        background-color: $mist;
+        &__edit{
+            padding: 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+        }
     }
     &__name{
         margin-top: 0;
     }
     &-pic {
+        margin-top: 20px;
+
         @include avatarMobile;
             min-width: 100px;
             min-height: 100px;
             background-image: url('../../data/images/default.png');
             background-size: cover;
             overflow: hidden;
+      
     }
     &__users{
         padding: 10px;
     }
 
     &-image{
+
         width: 100px;
         height: 100px;
+   
     }
+}
+
+
+.follow {
+    padding: 30px;
+    &__users {
+        border: 1px solid black;
+        padding: 3px;
+        margin: 2px;
+        border-radius: 6px;
+        background-color: $smoke;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+h2 {
+    margin: 0px;
 }

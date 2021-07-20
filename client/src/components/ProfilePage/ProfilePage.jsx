@@ -33,14 +33,13 @@ function ProfilePage(props) {
     useEffect(async () => {
         await setUserposts(posts.filter(post => post.creator === props.match.params.id))
         console.log(posts.filter(post => post.creator === props.match.params.id))
-    }, [posts])
+    }, [posts, props.match.params.id])
 
-
+    console.log(props.match.params.id)
     useEffect(async () => {
         try {
             const res = await axios.get(`/users/${props.match.params.id}`)
             setUser(res.data)
-
         } catch (error) {
             console.log(error)
         }
@@ -67,8 +66,51 @@ function ProfilePage(props) {
 
     return (
         <>
-            <HeroHeader />
+        <HeroHeader />
+
+        <div className="profileOver">
             <section className="profile">
+   
+
+                <div className="profile-right">
+                    <div className="profile__details">
+                        <div className="profile__about">
+                            <h2>About</h2>
+                            <p>{user?.about}</p>
+                        </div>
+                        <div className="profile__interests">
+                            <h2>Interests</h2>
+                            <p>{user?.interests}</p>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <div className="profile-pic">
+                            <img className="profile-image" src={user?.image} />
+
+                        </div>
+                        {currentuser.result.following.find(userd => userd.userId === user?._id) === -1 ?
+                        <>
+
+                            <div>
+                                follow
+                            </div>)
+                        </>
+                        : <div>Unfollow</div>}
+
+                    {currentuser.result._id !== props.match.params.id ?
+                        <>
+
+
+                            <button onClick={(e) => onFollow(e, user)}>Follow</button>
+                        </>
+                        : null}
+                    </div>
+
+           
+                </div>
+
                 <div className="profile-desc">
                     <h1 className="profile__name"> {user?.name}</h1>
                     <div>{user?.email}</div>
@@ -91,47 +133,21 @@ function ProfilePage(props) {
                     </div>
                     {currentuser.result._id === props.match.params.id ?
                         <>
-                            <button onClick={() => setShow(true)}>Edit Profile</button>
+                            <button className = "profile-desc__edit"onClick={() => setShow(true)}>Edit Profile</button>
                         </>
                         : null
                     }
                 </div>
-                <div className="profile__details">
-                    <h2>About</h2>
-                    <p>{user?.about}</p>
-                    <h2>Interests</h2>
-                    <p>{user?.interests}</p>
-                </div>
-                <div>
-                    <div className="profile-pic">
-                        <img className="profile-image" src={user?.image} />
 
-
-                    </div>
-                    {currentuser.result.following.find(userd => userd.userId === user?._id) === -1 ?
-                        <>
-
-                            <div>
-                                follow
-                            </div>)
-                        </>
-                        : <div>Unfollow</div>}
-
-                    {currentuser.result._id !== props.match.params.id ?
-                        <>
-
-
-                            <button onClick={(e) => onFollow(e, user)}>Follow</button>
-                        </>
-                        : null}
-                </div>
             </section>
 
             <PostsList whoose={"Your Previous"} setCurrentId={setCurrentId} posts={userposts} />
             <ProfileModal show={show} setShow={setShow} id={props.match.params.id}
                 user={user} setUser={setUser} />
-            <HeroFooter />
-        </>
+      </div>
+      <HeroFooter />
+
+      </>
     )
 }
 

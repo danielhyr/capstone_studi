@@ -21,17 +21,22 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
         console.log(onlineUsers)
         console.log(following)
         setOnlineFollowing(following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId))
-  
-   
+
 
         console.log(following)
     }, [following, onlineUsers])
 
     useEffect(async () => {
-       const newArr = await onlineFollowing.map(f => f.userId)
-       console.log(newArr)
-       const offlineFollowing = following.filter(f => newArr.find(val => f.userId !== val) )
-       setOfflineFollowing(offlineFollowing)
+        if (onlineFollowing === []) {
+            const newArr = await onlineFollowing.map(f => f.userId)
+            console.log(newArr)
+            const offlineFollowing = following.filter(f => newArr.find(val => f.userId !== val))
+            setOfflineFollowing(offlineFollowing)
+        } else {
+            setOfflineFollowing(following)
+
+        }
+
     }, [onlineFollowing])
 
 
@@ -44,7 +49,7 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
             if (res.data === null) {
 
                 const newConvo = {
-                    senderId:currentId,
+                    senderId: currentId,
                     receiverId: user.userId
                 }
                 const res = await axios.post(`/conversations/`, newConvo)

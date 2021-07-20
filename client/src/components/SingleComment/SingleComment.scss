@@ -1,2 +1,54 @@
 @use '../../partials/variables' as *;
 @use '../../partials/mixin' as *;
+
+.singlecom {
+    padding: 0.5rem;
+    width: 50%;
+    margin: auto;
+    position: relative;
+
+    &-prop{
+        padding-left: 1rem;
+    }
+
+    &-avatar{
+        overflow: hidden;
+        @include avatarMobile;
+        min-width: 50px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        background-image: url("../../data/images/default.png");
+        background-size: cover;
+    }
+    &__image{
+        width: 100px;
+        height: 50px;
+        object-fit: cover;
+    }
+    &__comment{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border: 1px solid $mist;
+        padding: 1rem;
+        @include tablet {
+            flex-direction: row;
+        }
+    }
+    &-left{
+        display: flex;
+    }
+    &-right{
+        width: 100px;
+        text-align: center;
+    }
+    &__elem{
+        margin: 0px;
+    }
+    &__date{
+        position: absolute;
+        right: 16px;
+        top: -4px;
+    }
+}
