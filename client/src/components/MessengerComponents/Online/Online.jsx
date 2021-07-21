@@ -55,7 +55,7 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
     return (
         <div className="online" >
-            {onlineFollowing.map((o, index) => (
+            {onlineFollowing?.map((o, index) => (
 
                 <div key = {index} className="online-Friend" onClick={() => handleClick(o)}>
                     <div className="online-ImgContainer">
@@ -71,7 +71,7 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
                 </div>
             ))}
-            {offlineFollowing.map((o, index) => (
+            {offlineFollowing?.map((o, index) => (
 
                 <div key = {index} className="offline-Friend" onClick={() => handleClick(o)}>
                     <div className="offline-ImgContainer">

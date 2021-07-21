@@ -72,11 +72,10 @@ function ProfilePage(props) {
 
     return (
         <>
-            <HeroHeader />
+            <HeroHeader change = {user}/>
 
             <div className="profileOver">
                 <section className="profile">
-
 
                     <div className="profile-right">
                         <div className="profile__details">
@@ -110,6 +109,7 @@ function ProfilePage(props) {
                             Currently following {user?.following.length} people</p>
                             <div className="follow-container">
                                 {user?.following.map(us => {
+                                    console.log(us)
                                     return (
                                         <div className="follow__users"
                                             onClick={() => history.push(`/profile/${us.userId}`)}

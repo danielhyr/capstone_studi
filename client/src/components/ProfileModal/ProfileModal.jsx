@@ -37,22 +37,22 @@ function ProfileModal({ show, setShow, id, user, setUser }) {
                     <img src={close} alt="closing icon x mark" className="profModal__close" onClick={() => setShow(false)}/>
                     <h1>Edit Profile</h1>
                     <input className="profModal__input"
-                        placeholder="Your Name"
+                        placeholder={userData?.name}
                         defaultValue={userData?.name}
                         name="name"
                     />
                     <input className="profModal__input"
-                        placeholder="Your Email"
+                        placeholder={userData?.email}
                         defaultValue={userData?.email}
                         name="email"
                     />
                     <input className="profModal__input"
-                        placeholder= "About You"
+                        placeholder={userData?.about}
                         name="about"
                         defaultValue={userData?.about}
                     />
                     <input className="profModal__input"
-                        placeholder= "Your Interests"
+                        placeholder={userData?.interests}
                         name="interests"
                         defaultValue={userData?.interests}
 
