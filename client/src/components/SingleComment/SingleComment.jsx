@@ -1,14 +1,16 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 import './SingleComment.scss'
 import moment from 'moment';
 import deleteIcon from '../../data/Icons/delete.svg'
 import * as api from '../../api/index'
 
-function SingleComment({ comment, setComments, postId}) {
+function SingleComment({ comment, setComments, postId, index }) {
+
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
 
     const onDeleteHandler = async () => {
-        try {  
+        try {
             const res = await api.deleteComment(comment._id, postId)
             setComments(res.data)
         } catch (error) {
@@ -17,7 +19,7 @@ function SingleComment({ comment, setComments, postId}) {
     }
 
     return (
-        <div className="singlecom">
+        <div className="singlecom" key = {index}>
             <div className="singlecom__comment">
                 <div className="singlecom-left">
 
@@ -27,8 +29,9 @@ function SingleComment({ comment, setComments, postId}) {
                     </div>
                     <div className="singlecom-prop">
                         <p className="singlecom__date">{moment(Number(comment.timestamp)).fromNow()}</p>
-
-                        <img className="singlecom__del" src={deleteIcon} onClick = {onDeleteHandler}/>
+                        {user.result._id === comment.posterId ?
+                            <img className="singlecom__del" src={deleteIcon} onClick={onDeleteHandler} />
+                            : null}
                         <p className="singlecom__elem">{comment.name}</p>
                         <p className="singlecom-right">{comment.text}</p>
                     </div>

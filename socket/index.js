@@ -8,7 +8,7 @@ let users = [];
 let timeusers = [];
 
 const addUser = (userId, socketId) => {
-    console.log(users.findIndex(user => user.userId === userId))
+
     if (users.findIndex(user => user.userId === userId) === -1) {
 
         !users.some(user => user.userId === userId) &&
@@ -55,8 +55,7 @@ io.on("connection", (socket) => {
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
 
         const user = getUser(receiverId);
-        console.log("getUser of receiver id provided", user)
-        console.log(users)
+
         io.to(user?.socketId).emit("getMessage", { senderId, text: text })
     })
 
@@ -64,7 +63,6 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         console.log("a user has disconnected!")
-        console.log(socket.id)
         removeUser(socket.id)
         removetimeUser(socket.id)
         io.emit("getUsers", users)

@@ -6,7 +6,7 @@ import BreakTime from '../TimeComponents/BreakTime/BreakTime'
 import HeroHeader from '../HeroHeader/HeroHeader';
 import HeroFooter from '../HeroFooter/HeroFooter';
 import StudentsOnline from '../TimeComponents/StudentsOnline/StudentsOnline'
-
+import HeroImage from '../TimeComponents/HeroImage/HeroImage'
 class SessionPage extends Component {
 
   state = {
@@ -121,7 +121,7 @@ class SessionPage extends Component {
       <>
       <HeroHeader/>
       <div className="root">
-        <h1>Timer</h1>
+        <HeroImage/>
       <StudentsOnline isSession={this.state.isSession}/>
     
         <div className="increments">
@@ -150,7 +150,12 @@ class SessionPage extends Component {
             stopTimer={this.onPlayStopTime}
           />
         </div>
-        <button className="done" onClick = {() => this.props.history.push('/')}>Done!</button>
+        <button className="done" onClick = {async () => {
+            await this.setState({
+                isSession: false
+              })
+              this.props.history.push('/')
+        } }>Done!</button>
       </div>
             <HeroFooter/>
 </>

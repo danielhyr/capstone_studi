@@ -10,7 +10,6 @@ function PostsList({ setCurrentId, posts, whoose }) {
     const [id, setId] = useState(null)
     const [post, setPost] = useState(null)
 
-    console.log(posts)
     const [search, setSearch] = useState('')
 
     useEffect(() => {
@@ -24,7 +23,6 @@ function PostsList({ setCurrentId, posts, whoose }) {
 
     const handleKeyPress = (e) => {
         if (e.code === "Enter") {
-            console.log(search)
             searchPost()
         }
     }
@@ -65,10 +63,9 @@ function PostsList({ setCurrentId, posts, whoose }) {
                 /></div>
                 {post?.sort(function (x, y) {
                     return y.timestamp - x.timestamp
-                }).map(post => {
-                    console.log(post)
+                }).map((post, index) => {
                     return (
-                        <div key={post._id}>
+                        <div key={index}>
                             <SinglePost post={post} onSubmitHandler={onSubmitHandler} onDeleteHandler={onDeleteHandler} setCurrentId={setCurrentId} />
                         </div>
                     )

@@ -1,13 +1,43 @@
 @use '../../partials/variables' as *;
 @use '../../partials/mixin' as *;
 
+.allusers{
+    padding: 16px;
+    @include tablet {
+        padding: 50px;
+    }
+    @include desktop {
+        padding: 50px 90px;
+    }
+    &__header{
+        padding: 0px 20px;
+    }
+}
+
 .user {
     display: flex;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: $cool;
+    margin: 4px;
+    color: slategray;
+    font-weight: 700;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    &:hover {
+        transform: scale(1.03);
+    }
+
+    &__username{
+        margin-right: 20px;
+    }
 }
 
 .userWrapper {
     @include avatarMobile;
-
+    background-image: url("../../data/images/default.png");
+    background-size: cover;
+    margin-right: 16px;
 }
 
 .userImage {

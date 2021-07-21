@@ -19,9 +19,7 @@ function EditModal(props) {
 
 
     const onClose = (e) => {
-        //    const id =   props.id
-        //   const post =  posts.filter(post => id === post._id)
-        console.log(thisPost)
+
         props.onCloseHandler(e)
     }
 
@@ -98,10 +96,7 @@ function EditModal(props) {
         dispatch(updatePost(props.id, inputField))
     }
 
-    const handleComplete = (e) => {
-        console.log(e)
-    }
-
+  
     if (!props.show) {
         return null
     } else if (!thisPost) {

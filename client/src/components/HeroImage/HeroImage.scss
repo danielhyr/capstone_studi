@@ -12,14 +12,14 @@
     background-color: white;
     border-radius: 4px;
     width: 60%;
+    background-image: url("../../data/images/login-background.jpg");
+    background-size: cover;
+    background-position: 25% 90%;
     margin:3rem auto;
-    &__img {
-        // width: 200px;
-        // position: absolute;
-        // top: 90px;
-    }
-    &__h1 {
-        position:relative;
 
+    &__header {
+        position:relative;
+        color: rgb(17, 10, 10);
+        text-shadow: 2px 4px 3px rgba(235, 235, 235, 0.3);
     }
 }

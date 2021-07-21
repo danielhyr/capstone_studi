@@ -73,7 +73,6 @@ export const singleuser = async (req, res) => {
 
 export const followusers = async (req, res) => {
 
-  console.log(req.body)
   try {
     const { id } = req.params
 
@@ -84,15 +83,11 @@ export const followusers = async (req, res) => {
     // other user
     const otheruser = await UserModal.findById(req.body.userId)
 
-    console.log(user._id)
-    console.log(otheruser._id)
 
     const index = user.following.findIndex((user) =>
       user.userId === String(otheruser._id))
 
-    // console.log(id)
-    console.log(user)
-    console.log(index)
+
     if (index === -1) {
       user.following.push(req.body);
     }
@@ -130,9 +125,8 @@ export const updateuser = async (req, res) => {
     const user = await UserModal.findById(id);
     const {_id, following, password} = user
     // now, update the user with the req.body
-    const { about, interests, image, name } = req.body
-
-    const updatedUser = { _id, following, password, about, interests, image, name}
+    const { about, interests, image, name, email } = req.body
+    const updatedUser = { _id, following, password, about, interests, image, name, email}
 
     await UserModal.findByIdAndUpdate(id, updatedUser, { new: true })
     res.json(updatedUser);

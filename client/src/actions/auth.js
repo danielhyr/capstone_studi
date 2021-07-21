@@ -11,6 +11,7 @@ export const signin = (formData, history) => async (dispatch) => {
 
     } catch (error) {
         console.log(error)
+        alert("Incorrect password or username")
     }
 }
 

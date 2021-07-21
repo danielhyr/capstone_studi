@@ -11,7 +11,6 @@ function ProfileModal({ show, setShow, id, user, setUser }) {
     const [userData, setUserData] = useState()
 
 
-    console.log("modal", user)
     const onClick = async (e) => {
         e.preventDefault()
         try {
@@ -19,6 +18,7 @@ function ProfileModal({ show, setShow, id, user, setUser }) {
             const res = await api.updateuser(id, newData)
             setUserData(res.data)
             setUser(res.data)
+            setShow(false)
         } catch (error) {
             console.log(error)
         }
@@ -37,22 +37,22 @@ function ProfileModal({ show, setShow, id, user, setUser }) {
                     <img src={close} alt="closing icon x mark" className="profModal__close" onClick={() => setShow(false)}/>
                     <h1>Edit Profile</h1>
                     <input className="profModal__input"
-                        placeholder={userData?.name}
+                        placeholder="Your Name"
                         defaultValue={userData?.name}
                         name="name"
                     />
                     <input className="profModal__input"
-                        placeholder={userData?.email}
+                        placeholder="Your Email"
                         defaultValue={userData?.email}
                         name="email"
                     />
                     <input className="profModal__input"
-                        placeholder={userData?.about}
+                        placeholder= "About You"
                         name="about"
                         defaultValue={userData?.about}
                     />
                     <input className="profModal__input"
-                        placeholder={userData?.interests}
+                        placeholder= "Your Interests"
                         name="interests"
                         defaultValue={userData?.interests}
 

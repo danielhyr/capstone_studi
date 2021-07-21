@@ -1,28 +1,26 @@
-import mongoose from 'mongoose';
-import express from 'express'
+
 import Comments from '../models/comments.js';
 
 export const getComments = async (req, res) => {
     try {
-      const { id } = req.params
-      const comments = await Comments.find({
-          postId: id
-      });
-      res.json(comments);
+        const { id } = req.params
+        const comments = await Comments.find({
+            postId: id
+        });
+        res.json(comments);
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  }
+}
 
-  export const postComments = async (req, res) => {
+export const postComments = async (req, res) => {
 
     const { id } = req.params
-    const { text, image, name, timestamp} = req.body
+    const { text, image, name, timestamp, posterId } = req.body
 
     const newComment = new Comments({
-        postId: id, image, name, text, timestamp
+        postId: id, image, name, text, timestamp, posterId
     })
-
     try {
         await newComment.save();
         const comments = await Comments.find({
@@ -31,11 +29,11 @@ export const getComments = async (req, res) => {
         res.status(201).json(comments);
     } catch (error) {
         res.status(409).json({ message: error.message })
-    } 
-  }
+    }
+}
 
-  
-  export const deleteComments = async (req, res) => {
+
+export const deleteComments = async (req, res) => {
 
     const { id, postId } = req.params
 
@@ -45,4 +43,4 @@ export const getComments = async (req, res) => {
     });
     res.json(comments)
 
-  }
+}

@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 import HeroHeader from '../HeroHeader/HeroHeader';
 import HeroFooter from '../HeroFooter/HeroFooter';
+import { useHistory} from 'react-router-dom'
 import './UserList.scss'
 import * as api from '../../api/index'
+import axios from 'axios';
 
 
 function UserList() {
     const [users, setUsers] = useState(null)
     const thisuser = JSON.parse(localStorage.getItem('profile'))
+    const history = useHistory()
 
     useEffect(async () => {
         const getusers = async () => {
@@ -27,11 +30,9 @@ function UserList() {
             name: user.name,
             userId: user._id
         }
-        console.log(followUser)
 
         try {
             const res = await api.followUser(thisuser.result._id, followUser)
-            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -41,26 +42,25 @@ function UserList() {
 
         <>
             <HeroHeader />
-            {users?.map(user =>
-            (
-                <form className="user" onSubmit={(e) => onFollow(e, user)}>
-                    <div className="userWrapper">
-                        <img className="userImage" src=""></img>
-                    </div>
-                    <div>
-                        {user.name}
-                    </div>
-                    <div>
-                        {user.email}
-                    </div>
-                    <div className="bcontainers">
-                        <button>
-                            follow
-                        </button>
-                    </div>
-                </form>
-            ))}
+            <section className = "allusers">
+                {users?.map(user =>
+                (
+                    <form className="user" onSubmit={(e) => onFollow(e, user)} onClick={() => { history.push(`/profile/${user._id}`) } }>
+                        <div className="userWrapper">
+                            <img className="userImage" src="" ></img>
+                        </div>
+                        <div className="user__username">
+                            {user.name}
+                        </div>
+                        <div>
+                            {user.email}
+                        </div>
+                        <div className="bcontainers">
 
+                        </div>
+                    </form>
+                ))}
+            </section>
             <HeroFooter />
         </>
     )

@@ -74,13 +74,14 @@
         background-color: $cool;
         margin: 10px;
         border-radius: 4px;
-        &-wrapper{
-            
+        &__header{
+         padding: 10px;   
+         border-bottom: 1px solid slategray;
         }
     }
 }
 
 .defaulttext{
     text-align: center;
-    
+    margin: auto;
 }

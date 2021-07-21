@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     padding-bottom: $mobile-margins;
-    padding-top: 14px;
+    padding: 14px 10px;
     height: 80px;
     @include tablet {
         flex-direction: row;
@@ -31,15 +31,18 @@
         bottom: 4px;
         border: none;
         padding-left: 2rem;
+        right: 10px;
+      
         &-img{
             position: relative;
             bottom: 2rem;
         }
     }
     &__logo {
-        width: 10rem;
-        padding-bottom: 0.5rem;
-
+        @include bold;
+        font-size: 2.5rem;
+        position: relative;
+        bottom: 10px;
         @include tablet {
         }
     }
@@ -56,10 +59,12 @@
 
        
         &-input {
-            width: 50%;
+            width: 30%;
+            position: absolute;
+            left: 50%;
+            top: 2.5rem;
+
             @include tablet {
-            position: relative;
-            top: 1rem;
             margin-right: 3rem;
         }   
         }
@@ -91,7 +96,7 @@
 
             }
             &:hover {
-                background-color: $instock-black;
+                background-color: black;
                 color: $white;
             }
         }
@@ -137,7 +142,6 @@
         position: relative;
         margin: 10px;
         border-bottom: 2px solid skyblue;
-        text-align: center;
         &:hover {   
             border-bottom: 2px solid black;
         }

@@ -32,7 +32,6 @@ function MessengerPage() {
         try {
             const res = await api.getSingleUser(user.result._id)
             setLoggedUser(res.data)
-            console.log(res)
         } catch (error) {
             console.log(error)
         }
@@ -47,7 +46,6 @@ function MessengerPage() {
                 text: data.text,
                 createdAt: Date.now()
             })
-            console.log(data)
         })
     }, [])
 
@@ -124,8 +122,8 @@ function MessengerPage() {
                 <div className="messenger-chatMenu">      <div className="messenger-chatMenu-wrapper">
 
 
-                    {conversations.map((c) => (
-                        <div onClick={() => setCurrentChat(c)}>
+                    {conversations.map((c, index) => (
+                        <div key={index} onClick={() => setCurrentChat(c)}>
                             <Conversation currentUser={user} conversation={c} />
                         </div>
                     ))}
@@ -140,9 +138,9 @@ function MessengerPage() {
                             <>
                                 <div className="messenger-chatBox-Top">
 
-                                    {messages?.map(m =>
+                                    {messages?.map((m, index) =>
                                     (
-                                        <div ref={scrollRef}>
+                                        <div ref={scrollRef} key={index}>
                                             <Message message={m}
                                                 own={m.sender === user.result._id}
                                                 image={m.image}
@@ -159,17 +157,16 @@ function MessengerPage() {
                                     <button className="messenger-chatBox-Bottom__button" onClick={handleSubmit}>Send</button>
                                 </div>
                             </>
-                            : <h1 className="defaulttext">Open an existing conversation from the left or start a new one from the right!</h1>}
+                            : <h1 className="defaulttext">Open an existing conversation from the left or start a new one from the right.</h1>}
                     </div>
                 </div>
 
                 <div className="messenger-chatOnline">
-                    <div className="messenger-chatOnline-wrapper"> Standmates
-                    </div>
+                    <h2 className="messenger-chatOnline__header"> Standmates</h2>
+                    
                     <Online onlineUsers={onlineUsers}
                         currentId={user.result._id}
                         setCurrentChat={setCurrentChat}
-
                     />
                 </div>
             </div>

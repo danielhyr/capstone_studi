@@ -3,7 +3,6 @@
 .timer {
     display: flex;
     flex-direction: column;
-    background-color: $beige;
     border: 2px solid $primary-blue;
     border-radius: 0.5rem;
     align-items: center;
@@ -22,7 +21,7 @@
     &__time {
         font-size: 2.5rem;
         font-weight: 700;
-        color: whitesmoke;
+        color: black;
         padding-bottom: 2rem;
         padding-top: 1rem;
     }

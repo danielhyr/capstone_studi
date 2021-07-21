@@ -21,7 +21,7 @@ function PostComments({ show, postId }) {
         e.preventDefault()
         const newComment = {
             text: e.target.text.value, timestamp: Date.now(),
-            image: user.result.image, name: user.result.name
+            image: user.result.image, name: user.result.name, posterId: user.result._id
         }
         try {
             const res = await api.postComment(postId, newComment)
@@ -38,16 +38,16 @@ function PostComments({ show, postId }) {
                     <div className="comments-wrap">
                         <img src={user.result.image} className="comments__image"></img>
                     </div>
-                    <textarea name="text" className="comments__text">
+                    <textarea name="text" className="comments__text" required>
 
                     </textarea>
                     <button type="submit" className="comments__button">Submit</button>
                 </form>
                 {comments?.sort(function (x, y) {
                     return y.timestamp - x.timestamp
-                }).map((comment) => {
+                }).map((comment, index) => {
                     return (
-                <SingleComment comment={comment} setComments= {setComments} postId = {postId} />)
+                <SingleComment comment={comment} setComments= {setComments} postId = {postId} index= {index}/>)
                 }
                 )}
             </section>

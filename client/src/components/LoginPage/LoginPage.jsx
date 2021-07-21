@@ -22,7 +22,6 @@ function LoginPage() {
         } else {
             dispatch(signin(formData, history))
 
-            console.log(history)
         }
     }
 
@@ -41,14 +40,14 @@ function LoginPage() {
 
         <div className="body">
             <div className="main">
-                <p className="sign"> <img className="sign__logo" src={Logo}></img></p>
-
+                <p className="sign"><h1 className="sign__logo">Standup</h1></p>
+                
                 <form className="form" onSubmit={handleSubmit}>
                     {
                         !isSignup && (
                             <>         <div className="form-inputs">
-                                <input className="un " type="text" placeholder="Username"name = "email" onChange = {handleChange}/>
-                                <input className="pass" type="password" placeholder="Password"
+                                <input required className="nametext" type="text" placeholder="Username"name = "email" onChange = {handleChange}/>
+                                <input required className="pass" type="password" placeholder="Password"
                                 name ="password"
                                 onChange = {handleChange}
                                 />

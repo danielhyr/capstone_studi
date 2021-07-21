@@ -145,6 +145,7 @@
 .schedulePost{
     display: flex;
     overflow-y: scroll;
+    overflow-x: hidden;
     flex-direction: column;
     border:1px solid grey;
     padding: 10px;
@@ -152,12 +153,18 @@
     border-radius: 5px;
     position: relative;
 
+    transition:transform 0.7s ;
+
+    &:hover {
+        transform: scale(1.1);
+
+    }
+
     &__checked {
         width: 2rem;
         position: absolute;
         z-index: 2;
-        left: -10px;
-        bottom: -20px;
+        left: 5px;
         background-color: black;
         border-radius: 50%;
         border:1px solid black;
@@ -181,6 +188,12 @@
         height: auto;
         padding: 10px 0 0;
         justify-content: space-between;
+        transition:transform 0.7s ;
+
+        &:hover {
+            transform: scale(1.1);
+
+        }
     }
 
     &__time{
@@ -213,19 +226,27 @@
         padding-bottom: 8px;
         position: relative;
         z-index: 10;
+        transition:background-color 0.7s ;
+        &:hover{
+            background-color: $cloud;
+            border-radius: 7px;
+        }
     }
 }
 
 .checked{
     position: absolute;
     z-index: inherit;
+    left: 50%;
     &__img{
         position: relative;
         z-index: 3;
-        width: 4rem;
+        width: 10rem;
+        right: 5rem;
         @include tablet {
-            width: 12rem;
-
+            width: 8rem;
+            right: 4rem;
+            top: 2rem;
         }
     }
 }

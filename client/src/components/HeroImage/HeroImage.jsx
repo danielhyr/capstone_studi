@@ -17,11 +17,11 @@ function HeroImage() {
 
     return (
         <div className="hero">
-            <h1 className="hero__h1">Hello, {user.result.name}</h1>
+            <h1 className="hero__header">Hello, {user.result.name}</h1>
             <div className="hero__img">
                 <Lottie options={Pencilfile} height={150} width={200} />
             </div>
-            <h1 className="hero__h1">Let's start your day off with a plan.</h1>
+            <h1 className="hero__header">Let's start your day off with a plan.</h1>
         </div>
     )
 }

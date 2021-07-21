@@ -41,13 +41,13 @@ const HeroHeader = () => {
   return (
     <nav className="nav" >
       <div className="header">
-        <Link to="/" ><img className="header__logo" src={Logo} alt="studi logo, graduation hat logo" />
-        </Link>
+  
+        <h1 onClick = {() => history.push('/')}className = "header__logo">Standup</h1>
         <div className="header-container">
-          {/* <div className="header-container-input">
+          <div className="header-container-input">
             <input type="search" name="search" className="header__search" placeholder="search"></input>
-            <img className="header__search-img" src={Search} alt="brainflix seaerch icon" />
-          </div> */}
+            <img className="header__search-img" src={Search} alt="search icon magnifying glass" onClick = {() => history.push('/users')}/>
+          </div>
 
           {user ? (
             <div className="dropdown">

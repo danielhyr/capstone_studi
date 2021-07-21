@@ -45,6 +45,7 @@
             background-color: white;
             min-height: 300px;
             width: 100%;
+            overflow-y: scroll;
             @include tablet {
                 min-height: 300px;
                 width: auto;

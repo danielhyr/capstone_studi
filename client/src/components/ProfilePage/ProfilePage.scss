@@ -17,6 +17,8 @@
     background-color: white;
     flex-direction: column;
     margin:10px 10px 0px;
+    background-image: url('../../data/images/login-background.jpg');
+    background-size: cover;
     @include tablet{
         flex-direction: row;
         margin: 2rem 6rem;
@@ -25,13 +27,15 @@
     }
 
     &__fbutton{
-        padding: 10px;
+        padding: 3px 10px;
         border-radius: 7px;
-        height: 3rem;
+        height: 2rem;
         margin-left: 4rem;
         background-color: $green;
         font-weight: 700;
-
+        position: absolute;
+        border: none;
+        top: 8px;
     }
 
     &__about{
@@ -42,6 +46,8 @@
     &-picFollow{
         display: flex;
         align-items: center;
+        position: relative;
+
     }
 
     &__interests{
@@ -54,7 +60,7 @@
         border: 1px solid $charcoal;
         background-color: $smoke;
         padding: 16px;
-        border-radius: 5px;
+        border-radius: 20px;
         flex-direction: column;
         align-items: center;
         margin-bottom: 16px;
@@ -82,15 +88,24 @@
         padding: 1rem;
         border-radius: 4px;
         background-color: $smoke;
+        position: relative;
+
         &__edit{
-            padding: 16px;
+            padding: 5px 10px;
             border-radius: 6px;
             font-weight: 600;
             font-size: 16px;
-            background-color: $white;
+            background-color: $cooler;
+            position:absolute;
+            top: 0px;
+            right: -16px;
+            border: 1px solid $beige;
             &:focus {
-                background-color: $red;
+                background-color: black;
+            }
+            &:hover {
                 transform: scale(1.1);
+
             }
         }
     }
@@ -125,12 +140,14 @@
     padding: 30px;
     &__users {
         border: 1px solid black;
-        padding: 3px;
+        padding: 7px 2px;
         margin: 2px;
-        border-radius: 6px;
+        border-radius: 10px;
         background-color: $white;
         text-align: center;
         font-weight: 600;
+        width: 80%;
+        margin: 10px auto;
         &:hover{
             background-color: $green;
 

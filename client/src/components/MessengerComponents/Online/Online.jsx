@@ -18,21 +18,16 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
 
     useEffect(async () => {
-        console.log(following)
        await setOnlineFollowing(following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId))
-       console.log("this", following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId).length)
+
     }, [following, onlineUsers])
 
     useEffect(async () => {
-        console.log(following)
-        console.log(onlineFollowing)
+
         if (onlineFollowing.length === 0) {
-            console.log(following)
             setOfflineFollowing(following)
-            console.log(offlineFollowing)
         } else {
             const newArr = await onlineFollowing.map(f => f.userId)
-            console.log(newArr)
             const offlineFollowing = following.filter(f => newArr.find(val => f.userId !== val))
             setOfflineFollowing(offlineFollowing)        }
     }, [following, onlineFollowing])
@@ -60,9 +55,9 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
     return (
         <div className="online" >
-            {onlineFollowing.map((o) => (
+            {onlineFollowing.map((o, index) => (
 
-                <div className="online-Friend" onClick={() => handleClick(o)}>
+                <div key = {index} className="online-Friend" onClick={() => handleClick(o)}>
                     <div className="online-ImgContainer">
                         <img
                             className="online-Img"
@@ -76,9 +71,9 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
                 </div>
             ))}
-            {offlineFollowing.map((o) => (
+            {offlineFollowing.map((o, index) => (
 
-                <div className="offline-Friend" onClick={() => handleClick(o)}>
+                <div key = {index} className="offline-Friend" onClick={() => handleClick(o)}>
                     <div className="offline-ImgContainer">
                         <img
                             className="offline-Img"

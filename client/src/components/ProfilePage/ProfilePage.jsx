@@ -18,7 +18,6 @@ function ProfilePage(props) {
     const [user, setUser] = useState(null)
 
     const [userposts, setUserposts] = useState()
-    console.log(posts)
     const dispatch = useDispatch()
     const [show, setShow] = useState(false)
     const [fdecider, setFdecider] = useState(null)
@@ -33,7 +32,7 @@ function ProfilePage(props) {
 
     useEffect(async () => {
         await setUserposts(posts.filter(post => post.creator === props.match.params.id))
-        console.log(posts.filter(post => post.creator === props.match.params.id))
+     
     }, [posts, props.match.params.id])
 
     useEffect(async () => {
@@ -45,6 +44,16 @@ function ProfilePage(props) {
         }
     }, [props.match.params.id])
 
+
+    useEffect(async () => {
+        try {
+            const res = await api.getSingleUser(currentuser?.result._id)
+            const followArr = res.data.following.find(f => f.userId === props.match.params.id)
+            setFdecider(followArr)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [props.match.params.id])
 
     const onFollow = async (e, user) => {
         e.preventDefault()
@@ -101,7 +110,6 @@ function ProfilePage(props) {
                             Currently following {user?.following.length} people</p>
                             <div className="follow-container">
                                 {user?.following.map(us => {
-                                    console.log(us)
                                     return (
                                         <div className="follow__users"
                                             onClick={() => history.push(`/profile/${us.userId}`)}
@@ -112,7 +120,7 @@ function ProfilePage(props) {
                             </div>
                         </div>
                         {currentuser.result._id === props.match.params.id ?
-                            <button className="profile-desc__edit" onClick={() => setShow(true)}>Edit Profile</button>
+                            <button className="profile-desc__edit" onClick={() => setShow(true)}>. . .</button>
 
                             : null
                         }

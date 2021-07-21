@@ -5,42 +5,48 @@
 
 
 .main {
-    background-color: #FFFFFF;
-    width: 90%;
-    height: auto;
-    min-height: 400px;
-    max-height: 700px;
-    margin: auto auto;
-    border-radius: 4rem;
-    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-
-    @include tablet {
-        width: 50%;
-    }
-    @include desktop {
-        width: 30%;
-    }
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    height: 100%;
+    // background-color: #FFFFFF;
+    // height: auto;
+    // min-height: 400px;
+    // max-height: 700px;
+    // margin: auto auto;
+    // border-radius: 4rem;
+    // box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    // @include tablet {
+    //     width: 50%;
+    // }
+    // @include desktop {
+    //     width: 30%;
+    // }
 }
 .body {
-    background-color: #aca9ad;
-    background: linear-gradient(#FFFFFF, #87888a);
-        font-family: 'Ubuntu', sans-serif;
-    height: 100%;
-    width: 100vw;
-    position: absolute;
-
-    background-image: url('../../data/images/login-background.jpg')
+    // font-family: 'Ubuntu', sans-serif;
+    // height: 130%;
+    // width: 100vw;
+    // position: absolute;
+    // background-image: url('../../data/images/login-background.jpg');
+    // overflow-x: hidden;
 }
 .sign {
     display: flex;
-    color: #8C55AA;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
+    justify-content: center;
     font-size: 23px;
     padding-top: 1rem;
     &__logo{
         margin: auto;
-
+        @include bold;
     
     }
 
@@ -48,67 +54,64 @@
 }
 
 .inputs {
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.un {
-width: 76%;
-color: rgb(38, 50, 56);
-font-weight: 700;
-font-size: 14px;
-letter-spacing: 1px;
-background: rgba(136, 126, 126, 0.04);
-padding: 10px 20px;
-border: none;
-border-radius: 20px;
-outline: none;
-box-sizing: border-box;
-border: 2px solid rgba(0, 0, 0, 0.02);
+.nametext {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
 
-text-align: center;
-margin-bottom: 27px;
-font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    margin-bottom: 27px;
 }
 
 .form {
+    width: 100%;
     @include tablet {
         padding: 40px 0;
-
+        width: 50%;
     }
     &-inputs {
         display: flex;
         flex-direction: column;
         align-items: center;
         }
-        
 }
 
 .pass {
-        width: 76%;
-color: rgb(38, 50, 56);
-font-weight: 700;
-font-size: 14px;
-letter-spacing: 1px;
-background: rgba(136, 126, 126, 0.04);
-padding: 10px 20px;
-border: none;
-border-radius: 20px;
-outline: none;
-box-sizing: border-box;
-border: 2px solid rgba(0, 0, 0, 0.02);
+     width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
 
-text-align: center;
-margin-bottom: 27px;
-font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    margin-bottom: 27px;
 }
 
 
-.un:focus, .pass:focus {
-    border: 2px solid rgba(0, 0, 0, 0.18) !important;
-    
-}
+    .nametext:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    }
 
 .buttons {
     display: flex;
@@ -122,7 +125,7 @@ font-family: 'Ubuntu', sans-serif;
         color: grey;
         padding-top: 15px;
         padding-bottom: 15px;
-        width: 100%;
+        width: 80%;
         text-align: center;
         font-weight: 700;
         border: none;
@@ -135,10 +138,7 @@ font-family: 'Ubuntu', sans-serif;
         }
 
       }
-      
-      &__forgot {
-     
-      }
+
 
       &__signup {
         text-decoration: none;
@@ -147,7 +147,7 @@ font-family: 'Ubuntu', sans-serif;
         color: grey;
         padding-top: 15px;
         padding-bottom: 15px;
-        width: 100%;
+        width: 80%;
         text-align: center;
         font-weight: 700;
         border: none;
@@ -186,9 +186,7 @@ font-family: 'Ubuntu', sans-serif;
             outline: none;
             box-sizing: border-box;
             border: 2px solid rgba(0, 0, 0, 0.02);
-            
             text-align: center;
             margin-bottom: 27px;
-            font-family: 'Ubuntu', sans-serif;
         }
       }

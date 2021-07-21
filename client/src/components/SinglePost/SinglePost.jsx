@@ -6,7 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import likeIcon from '../../data/Icons/Icon-likes.svg'
 import deleteIcon from '../../data/Icons/delete.svg'
 import editIcon from '../../data/Icons/edit.svg'
-import checkIcon from '../../data/images/checkmark.png'
+import checkIcon from '../../data/images/bigcheck.png'
 import { useSelector, useDispatch } from 'react-redux';
 import smallcheckIcon from '../../data/images/smallcheck.png'
 import './SinglePost.scss'
@@ -38,7 +38,6 @@ function SinglePost(props) {
                 try {
                     const truthy = { boolean: true }
                     const res = await api.checkPost(props.post._id, truthy)
-                    console.log(res)
                     setPost(res.data)
                 } catch (error) {
                     console.log(error)
@@ -47,7 +46,6 @@ function SinglePost(props) {
                 try {
                     const falsey = { boolean: false }
                     const res = await api.checkPost(props.post._id, falsey)
-                    console.log(res)
                     setPost(res.data)
                 } catch (error) {
                     console.log(error)
@@ -155,7 +153,6 @@ function SinglePost(props) {
                         <span className="schedulePost-span__spans">Activity</span>
                     </div>
                     {props.post.schedule.map((item) => {
-                        console.log(item.id)
                         return (
                             <div className="schedulePost__list" key={item.id} onClick={() => handleSmallClick(item)}>
                                 <div className="schedulePost__time">
@@ -165,9 +162,8 @@ function SinglePost(props) {
                                     {item.activity}
                                 </div>
                                 {item.checked ?
-                                    <div className="checked">
+                              
                                         <img className="schedulePost__checked" src={smallcheckIcon} />
-                                    </div>
                                     : null}
                             </div>
                         )

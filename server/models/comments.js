@@ -9,6 +9,7 @@ const commentsSchema = mongoose.Schema({
         default: [],
     },    
     timestamp: String,
+    posterId: String,
     postId: String
 })
 
