@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import './LoginPage.scss'
-import { GoogleLogin } from 'react-google-login'
-import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
 import Logo from '../../data/images/logo.svg'
 import Input from './input';
@@ -24,7 +22,7 @@ function LoginPage() {
         } else {
             dispatch(signin(formData, history))
 
-
+            console.log(history)
         }
     }
 
@@ -32,7 +30,8 @@ function LoginPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const SwitchMode = () => {
+    const SwitchMode = (e) => {
+        e.preventDefault()
         setisSignup((previsSignUp) => !previsSignUp)
     }
 

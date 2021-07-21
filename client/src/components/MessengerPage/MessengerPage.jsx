@@ -1,13 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
+import { io } from "socket.io-client";
 import HeroFooter from '../HeroFooter/HeroFooter';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import './MessengerPage.scss'
 import Conversation from '../MessengerComponents/Conversation/Conversation';
 import Message from '../MessengerComponents/Message/Message';
 import Online from '../MessengerComponents/Online/Online';
-
-import axios from 'axios';
-import { io } from "socket.io-client";
+import * as api from '../../api/index'
 
 function MessengerPage() {
     const user = JSON.parse(localStorage.getItem('profile'))
@@ -31,7 +30,7 @@ function MessengerPage() {
 
     useEffect(async () => {
         try {
-            const res = await axios.get(`users/${user.result._id}`)
+            const res = await api.getSingleUser(user.result._id)
             setLoggedUser(res.data)
             console.log(res)
         } catch (error) {
@@ -48,55 +47,49 @@ function MessengerPage() {
                 text: data.text,
                 createdAt: Date.now()
             })
+            console.log(data)
         })
     }, [])
 
     useEffect(() => {
-        arrivalMessage && currentChat?.member.includes(arrivalMessage.sender) && setMessages(prev => [...prev, arrivalMessage])
+        arrivalMessage && currentChat?.member.includes(arrivalMessage?.sender) && setMessages(prev => [...prev, arrivalMessage])
     }, [arrivalMessage, currentChat])
 
     useEffect(() => {
         socket.current.emit("addUser", user.result._id)
         socket.current.on("getUsers", users => {
-
             setOnlineUsers(users.map(o => o.userId))
         })
-    }, [user.result._id])
+    }, [])
 
 
     useEffect(() => {
-
         const getConversations = async () => {
             try {
-                console.log("change")
-                const res = await axios.get("/conversations/" + user.result._id)
+                const res = await api.getConversations(user.result._id)
+
                 setConversations(res.data)
             } catch (error) {
-
+                console.log(error)
             }
         }
         getConversations()
     }, [user._id, currentChat])
 
     useEffect(() => {
-        console.log("hello")
         const getMessages = async () => {
             try {
-                const res = await axios.get("/messages/" + currentChat?._id)
+                const res = await api.getMessages(currentChat?._id)
                 setMessages(res.data)
-
             } catch (error) {
             }
-
         }
         getMessages()
     }, [currentChat])
 
     useEffect(() => {
         scrollRef?.current?.scrollIntoView({ behavior: "smooth" })
-
     }, [messages])
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -106,8 +99,6 @@ function MessengerPage() {
             conversationId: currentChat._id,
             image: loggedUser.image
         }
-        console.log(loggedUser)
-
         const receiverId = currentChat.member.find(member => member !== user.result._id)
         socket.current.emit("sendMessage", {
             senderId: user.result._id,
@@ -115,8 +106,7 @@ function MessengerPage() {
             text: newMessage,
         })
         try {
-            const res = await axios.post("/messages", thismessage);
-
+            const res = await api.createMessages(thismessage)
             setMessages([...messages, res.data])
             setNewMessage("");
 
@@ -124,7 +114,6 @@ function MessengerPage() {
             console.log(error)
         }
     }
-
 
 
     return (
@@ -170,7 +159,7 @@ function MessengerPage() {
                                     <button className="messenger-chatBox-Bottom__button" onClick={handleSubmit}>Send</button>
                                 </div>
                             </>
-                            : <span>Open a conversation to start a chat</span>}
+                            : <h1 className="defaulttext">Open an existing conversation from the left or start a new one from the right!</h1>}
                     </div>
                 </div>
 

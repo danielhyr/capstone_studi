@@ -7,7 +7,7 @@
     height: 100%;
     align-items: center;
     flex-direction: column;
-    background-color: $cloud;
+    background-color: whitesmoke;
     padding: 2rem;
     border-radius: 7px;
     margin: 1rem;
@@ -56,4 +56,16 @@ button:disabled {
     cursor: not-allowed;
     background-color: firebrick;
     color: black;
+}
+
+.done{
+    background-color: $cooler;
+    border: 2px solid $primary-blue;
+    border-radius: 0.5rem;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    width: 8rem;
+    font-weight: 600;
+    padding: 1rem;
+    margin: 4px;
 }

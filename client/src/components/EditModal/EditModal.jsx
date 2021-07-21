@@ -3,6 +3,7 @@ import './EditModal.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePost } from '../../actions/posts'
 import { v4 as uuidv4 } from 'uuid';
+import close from '../../data/Icons/close-24px.svg'
 
 function EditModal(props) {
     const thisPost = useSelector(state => state.posts).filter(post => props.id === post._id)
@@ -17,7 +18,7 @@ function EditModal(props) {
     }, [props.id])
 
 
-    const newPost = (e) => {
+    const onClose = (e) => {
         //    const id =   props.id
         //   const post =  posts.filter(post => id === post._id)
         console.log(thisPost)
@@ -27,68 +28,64 @@ function EditModal(props) {
 
     const handleAddFields = (e) => {
         e.preventDefault()
-        const newInputFields ={...inputField, schedule: [...inputField.schedule, { id: uuidv4(),  time: '', activity: ''}]}
-        setInputField({...newInputFields})
-      }
+        const newInputFields = { ...inputField, schedule: [...inputField.schedule, { id: uuidv4(), time: '', activity: '' }] }
+        setInputField({ ...newInputFields })
+    }
 
-      const handleRemoveFields = (id, e) => {
+    const handleRemoveFields = (id, e) => {
         e.preventDefault()
-        const values  = [...inputField.schedule];
+        const values = [...inputField.schedule];
         values.splice(values.findIndex(value => value.id === id), 1);
-        const newInputFields = {...inputField, 
-        schedule: values}
-        setInputField(newInputFields);
-      }
-
-    const handleChangeInput = (id, event) => {
-        console.log(inputField)   
-        console.log(event.target.value)
-
-    
-        if(inputField.title === null) {
-        const newInputFields = {...thisPost[0], schedule: inputField.schedule.map(field => {
-            console.log(field)
-            console.log(event.target.name)
-            console.log(id)
-            if(id === field.id) {
-                field[event.target.name] = event.target.value
-              }
-              return field;
-        })}
-        console.log(newInputFields)
-        setInputField(newInputFields);
-    } else {
-        const newInputFields = {...inputField, schedule: inputField.schedule.map(field => {
-            console.log(field.id)
-
-            console.log(event.target.name)
-            console.log(id)
-            if(id === field.id) {
-                field[event.target.name] = event.target.value
-              }
-              return field;
-        })}
-        console.log(newInputFields)
+        const newInputFields = {
+            ...inputField,
+            schedule: values
+        }
         setInputField(newInputFields);
     }
-    
+
+    const handleChangeInput = (id, event) => {
+        if (inputField.title === null) {
+            const newInputFields = {
+                ...thisPost[0], schedule: inputField.schedule.map(field => {
+
+                    if (id === field.id) {
+                        field[event.target.name] = event.target.value
+                    }
+                    return field;
+                })
+            }
+            setInputField(newInputFields);
+        } else {
+            const newInputFields = {
+                ...inputField, schedule: inputField.schedule.map(field => {
+
+                    if (id === field.id) {
+                        field[event.target.name] = event.target.value
+                    }
+                    return field;
+                })
+            }
+            setInputField(newInputFields);
+        }
+
     }
 
     const handleChangeTitle = (id, event) => {
-        console.log(inputField)
-        console.log(event.target.value)
 
-        if(inputField.title === null) {  const newInputFields = {...thisPost[0], schedule: thisPost[0].schedule,
-            title: event.target.value
-        }
-
-        setInputField(newInputFields);
-    }
-        else {
-            const newInputFields = {...inputField, schedule: inputField.schedule,
+        if (inputField.title === null) {
+            const newInputFields = {
+                ...thisPost[0], schedule: thisPost[0].schedule,
                 title: event.target.value
             }
-    
+
+            setInputField(newInputFields);
+        }
+        else {
+            const newInputFields = {
+                ...inputField, schedule: inputField.schedule,
+                title: event.target.value
+            }
+
             setInputField(newInputFields);
         }
     }
@@ -96,9 +93,8 @@ function EditModal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.title)
-        console.log(props.id)
-        
+
+
         dispatch(updatePost(props.id, inputField))
     }
 
@@ -108,7 +104,7 @@ function EditModal(props) {
 
     if (!props.show) {
         return null
-    }  else  if (!thisPost) {
+    } else if (!thisPost) {
         return null
     } else if (!inputField) {
         return null
@@ -116,27 +112,34 @@ function EditModal(props) {
     return (
 
         <section className="edit">
-            <form className="edit-form" onSubmit = {handleSubmit}>
-                <label htmlFor="title">Your Standup</label>
-                <input onChange = {event => handleChangeTitle(inputField.id, event)} name = "title" placeholder={inputField.title}></input>
+
+            <form className="edit-form" onSubmit={handleSubmit}>
+                <img onClick={onClose} className="edit__closer" src={close} alt="closing icon x mark" />
+                <div className="edit-standup">
+                    <h1>Edit Your Standup</h1>
+                    <input className="edit__title" onChange={event => handleChangeTitle(inputField.id, event)} name="title" placeholder={inputField.title}></input>
+                </div>
+                <button className="edit__add" onClick={handleAddFields}>+ Add</button>
                 {inputField.schedule.map(schedule => {
                     return (
-                        <div>
-                        <label htmlFor="time">time</label>
-                        <input value = {inputField.time} name = "time" placeholder={schedule.time}  onChange = {event => handleChangeInput(schedule.id, event)} ></input>
+                        <div className="editSchedule">
+                            <div className="editSchedule-element">
+                                <label className="editSchedule__label" htmlFor="time">Time</label>
+                                <input className="editSchedule__input" value={inputField.time} name="time" placeholder={schedule.time} onChange={event => handleChangeInput(schedule.id, event)} ></input>
 
-                        <label htmlFor="activity">activity</label>
-                        <input value = {inputField.activity} name = "activity" placeholder={schedule.activity}  onChange = {event => handleChangeInput(schedule.id, event)}></input>
-                        <button onClick={(event) => handleRemoveFields(schedule.id, event)}>Remove</button>
-                        <input type="checkbox" onClick={handleComplete}/>
+                            </div>
+                            <div className="editSchedule-element">
+                                <label className="editSchedule__label" htmlFor="activity">Activity</label>
+                                <input className="editSchedule__input" value={inputField.activity} name="activity" placeholder={schedule.activity} onChange={event => handleChangeInput(schedule.id, event)}></input>
+                            </div>
+                            <button className = "editSchedule__remove"onClick={(event) => handleRemoveFields(schedule.id, event)}>X</button>
                         </div>
                     )
                 })}
+                <div>
+                    <button className = "editSchedule__submit"type="submit">Submit</button>
+                </div>
 
-                <p>{thisPost[0].title}</p>
-                <button type = "submit">Submit</button>
-                <button onClick={newPost}>Close</button>
-                <button onClick = {handleAddFields}>Add</button>
             </form>
         </section>
     )

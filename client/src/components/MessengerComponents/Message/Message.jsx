@@ -1,10 +1,8 @@
 import "./Message.scss";
 import { format } from "timeago.js";
-import { useState, useEffect } from "react";
-import axios from "axios";
+
 
 export default function Message({ message, own, image }) {
-    console.log(message)
 
     return (
         <div className={own ? "message own" : "message"}>
@@ -18,7 +16,7 @@ export default function Message({ message, own, image }) {
                 </div>
                 <p className="message__Text">{message.text}</p>
             </div>
-            <div className="message__Bottom">{message.createdAt}</div>
+            <div className="message__Bottom">{format(message.createdAt)}</div>
         </div>
     );
 }

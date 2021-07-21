@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './PostComments.scss'
 import SingleComment from '../SingleComment/SingleComment'
-import axios from 'axios'
+import * as api from '../../api/index'
 
 function PostComments({ show, postId }) {
     const user = JSON.parse(localStorage.getItem('profile'))
@@ -10,7 +10,7 @@ function PostComments({ show, postId }) {
 
     useEffect(async () => {
         try {
-            const res = await axios.get(`/comments/${postId}`)
+            const res = await api.getComments(postId)
             setComments(res.data)
         } catch (error) {
             console.log(error)
@@ -24,17 +24,16 @@ function PostComments({ show, postId }) {
             image: user.result.image, name: user.result.name
         }
         try {
-            const res = await axios.post(`/comments/${postId}`, newComment)
+            const res = await api.postComment(postId, newComment)
             setComments(res.data)
         } catch (error) {
             console.log(error)
         }
     }
 
-    console.log(comments)
     return (
         show ?
-           <section className="commentWrap">
+            <section className="commentWrap">
                 <form className="comments" onSubmit={onSubmit}>
                     <div className="comments-wrap">
                         <img src={user.result.image} className="comments__image"></img>
@@ -44,11 +43,14 @@ function PostComments({ show, postId }) {
                     </textarea>
                     <button type="submit" className="comments__button">Submit</button>
                 </form>
-                {comments?.map((comment) => {
-                   return( <SingleComment comment = {comment}/>)
+                {comments?.sort(function (x, y) {
+                    return y.timestamp - x.timestamp
+                }).map((comment) => {
+                    return (
+                <SingleComment comment={comment} setComments= {setComments} postId = {postId} />)
                 }
                 )}
-          </section>
+            </section>
             :
             null
 

@@ -4,14 +4,17 @@
 
 .profileOver{
     background-color: $back;
-    padding: 30px;
+    @include tablet {
+        padding: 30px;
+    }
+   
 }
 
 .profile{
     display: flex;
     padding: 2rem;
     justify-content: space-between;
-    background-color: $beige;
+    background-color: white;
     flex-direction: column;
     margin:10px 10px 0px;
     @include tablet{
@@ -21,9 +24,24 @@
         border-radius: 4px;
     }
 
+    &__fbutton{
+        padding: 10px;
+        border-radius: 7px;
+        height: 3rem;
+        margin-left: 4rem;
+        background-color: $green;
+        font-weight: 700;
+
+    }
+
     &__about{
         padding: 20px;
 
+    }
+
+    &-picFollow{
+        display: flex;
+        align-items: center;
     }
 
     &__interests{
@@ -34,7 +52,7 @@
         display: flex;
         justify-content: space-between;
         border: 1px solid $charcoal;
-        background-color: $cool;
+        background-color: $smoke;
         padding: 16px;
         border-radius: 5px;
         flex-direction: column;
@@ -63,12 +81,17 @@
         border: 1px solid $cloud;
         padding: 1rem;
         border-radius: 4px;
-        background-color: $mist;
+        background-color: $smoke;
         &__edit{
             padding: 16px;
             border-radius: 6px;
             font-weight: 600;
             font-size: 16px;
+            background-color: $white;
+            &:focus {
+                background-color: $red;
+                transform: scale(1.1);
+            }
         }
     }
     &__name{
@@ -105,9 +128,13 @@
         padding: 3px;
         margin: 2px;
         border-radius: 6px;
-        background-color: $smoke;
+        background-color: $white;
         text-align: center;
         font-weight: 600;
+        &:hover{
+            background-color: $green;
+
+        }
     }
 }
 

@@ -1,38 +1,25 @@
 import { useState, useEffect } from 'react'
 import HeroHeader from '../HeroHeader/HeroHeader';
 import HeroFooter from '../HeroFooter/HeroFooter';
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { getusers } from '../../actions/posts'
 import './UserList.scss'
-
-import axios from 'axios';
+import * as api from '../../api/index'
 
 
 function UserList() {
-
-    const dispatch = useDispatch()
-
     const [users, setUsers] = useState(null)
-
     const thisuser = JSON.parse(localStorage.getItem('profile'))
 
-        console.log(thisuser)
     useEffect(async () => {
         const getusers = async () => {
             try {
-                const res = await axios.get("/users")
-
+                const res = await api.getusers()
                 setUsers(res.data)
-                console.log(res)
-
             } catch (error) {
                 console.log(error)
             }
         }
         getusers()
     }, [])
-
 
     const onFollow = async (e, user) => {
         e.preventDefault()
@@ -43,8 +30,7 @@ function UserList() {
         console.log(followUser)
 
         try {
-            const res = await axios.put("/users/follow/" + thisuser.result._id, followUser)
-
+            const res = await api.followUser(thisuser.result._id, followUser)
             console.log(res.data)
         } catch (error) {
             console.log(error)
@@ -53,13 +39,11 @@ function UserList() {
 
     return (
 
-
-
         <>
             <HeroHeader />
-            {users?.map(user => 
+            {users?.map(user =>
             (
-                <form className="user" onSubmit = {(e) => onFollow(e, user)}>
+                <form className="user" onSubmit={(e) => onFollow(e, user)}>
                     <div className="userWrapper">
                         <img className="userImage" src=""></img>
                     </div>

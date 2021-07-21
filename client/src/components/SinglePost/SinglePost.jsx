@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import PostComments from '../PostComments/PostComments';
-import { useDispatch } from 'react-redux'
-import { deletePost, likePost } from '../../actions/posts'
+import { deletePost, likePost, updatePost } from '../../actions/posts'
 import { useLocation, useHistory } from 'react-router-dom'
 import likeIcon from '../../data/Icons/Icon-likes.svg'
 import deleteIcon from '../../data/Icons/delete.svg'
 import editIcon from '../../data/Icons/edit.svg'
 import checkIcon from '../../data/images/checkmark.png'
-
+import { useSelector, useDispatch } from 'react-redux';
+import smallcheckIcon from '../../data/images/smallcheck.png'
 import './SinglePost.scss'
-import axios from 'axios';
+import * as api from "../../api/index"
 
 function SinglePost(props) {
 
@@ -20,9 +20,6 @@ function SinglePost(props) {
     const dispatch = useDispatch()
 
     const user = JSON.parse(localStorage.getItem('profile'))
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -40,16 +37,17 @@ function SinglePost(props) {
             if (!post.checked) {
                 try {
                     const truthy = { boolean: true }
-                    const res = await axios.patch(`http://localhost:3000/posts/check/${props.post._id}`, truthy)
+                    const res = await api.checkPost(props.post._id, truthy)
+                    console.log(res)
                     setPost(res.data)
                 } catch (error) {
                     console.log(error)
                 }
-
             } else {
                 try {
                     const falsey = { boolean: false }
-                    const res = await axios.patch(`http://localhost:3000/posts/check/${props.post._id}`, falsey)
+                    const res = await api.checkPost(props.post._id, falsey)
+                    console.log(res)
                     setPost(res.data)
                 } catch (error) {
                     console.log(error)
@@ -60,7 +58,41 @@ function SinglePost(props) {
 
         }
     }
-    console.log(props.post.timestamp)
+
+    const handleSmallClick = async (item) => {
+        if (post.creator === user.result._id) {
+            if (!item.checked) {
+                const newPost = {
+                    ...props.post, schedule: props.post.schedule.map(field => {
+                        if (item.id === field.id) {
+                            field.checked = true
+                        }
+                        return field;
+                    })
+                }
+                try {
+                    dispatch(updatePost(props.post._id, newPost))
+                } catch (error) {
+                    console.log(error)
+                }
+            } else {
+                const newPost = {
+                    ...props.post, schedule: props.post.schedule.map(field => {
+                        if (item.id === field.id) {
+                            field.checked = false
+                        }
+                        return field;
+                    })
+                }
+                try {
+                    dispatch(updatePost(props.post._id, newPost))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+        }
+    }
     return (
         <>
             <div className="post">
@@ -87,8 +119,7 @@ function SinglePost(props) {
 
                     <div className="post-left-bottom">
 
-                        <div className="post-left-bottom__icons"> {props.post.likes?.length} likes <img className="post-left-bottom__like" src={likeIcon} onClick={() => { dispatch(likePost(props.post._id)) }}>
-                        </img>
+                        <div className="post-left-bottom__icons"> {props.post.likes?.length} likes
 
                             {(user?.result.googleId === props.post?.creator || user?.result._id === props.post?.creator) && (
                                 <>
@@ -97,7 +128,8 @@ function SinglePost(props) {
                                     <img className="post-left-bottom__del" src={deleteIcon} onClick={handleDelete} />
                                 </>
                             )}
-
+                            <img className="post-left-bottom__like" src={likeIcon} onClick={() => { dispatch(likePost(props.post._id)) }}>
+                            </img>
                         </div>
 
 
@@ -108,29 +140,35 @@ function SinglePost(props) {
                 <div className="post-standup">
                     <h3 className="post-standup__header">The Standup</h3>
                     <p className="post-standup__content">{props.post.title}</p>
-                    <button className="post-standup__show"onClick={() => { show ? setShow(false) : setShow(true) }}>show comments</button>
+                    <button className="post-standup__show" onClick={() => { show ? setShow(false) : setShow(true) }}>show comments</button>
                 </div>
 
-                <div className="schedulePost" onClick={handleClick}>
+                <div className="schedulePost">
                     {post.checked ?
                         <div className="checked">
                             <img className="checked__img" src={checkIcon} />
                         </div>
                         : null}
-                    <h3 className="schedulePost__header" >Schedule</h3>
+                    <h3 className="schedulePost__header" onClick={handleClick} >Schedule</h3>
                     <div className="schedulePost-span">
                         <span className="schedulePost-span__spans">Time</span>
                         <span className="schedulePost-span__spans">Activity</span>
                     </div>
                     {props.post.schedule.map((item) => {
+                        console.log(item.id)
                         return (
-                            <div className="schedulePost__list">
+                            <div className="schedulePost__list" key={item.id} onClick={() => handleSmallClick(item)}>
                                 <div className="schedulePost__time">
                                     {item.time}
                                 </div>
                                 <div className="schedulePost__activity">
                                     {item.activity}
                                 </div>
+                                {item.checked ?
+                                    <div className="checked">
+                                        <img className="schedulePost__checked" src={smallcheckIcon} />
+                                    </div>
+                                    : null}
                             </div>
                         )
                     })}

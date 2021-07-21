@@ -33,3 +33,16 @@ export const getComments = async (req, res) => {
         res.status(409).json({ message: error.message })
     } 
   }
+
+  
+  export const deleteComments = async (req, res) => {
+
+    const { id, postId } = req.params
+
+    await Comments.findByIdAndRemove(id);
+    const comments = await Comments.find({
+        postId: postId
+    });
+    res.json(comments)
+
+  }

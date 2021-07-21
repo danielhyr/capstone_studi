@@ -8,8 +8,14 @@ let users = [];
 let timeusers = [];
 
 const addUser = (userId, socketId) => {
-    !users.some(user => user.userId === userId) &&
-        users.push({ userId, socketId });
+    console.log(users.findIndex(user => user.userId === userId))
+    if (users.findIndex(user => user.userId === userId) === -1) {
+
+        !users.some(user => user.userId === userId) &&
+            users.push({ userId, socketId });
+    } else {
+        users.splice(users.findIndex(user => userId === user.userId), 1, { userId, socketId })
+    }
 }
 
 const removeUser = (socketId) => {
@@ -21,20 +27,23 @@ const getUser = (userId) => {
 }
 // Time
 const addtimeUser = (userId, socketId) => {
-    !timeusers.some(user => user.userId === userId) &&
-    timeusers.push({ userId, socketId });
+
+    if (timeusers.findIndex(user => user === user.userId) === -1) {
+        !timeusers.some(user => user.userId === userId) &&
+            timeusers.push({ userId, socketId });
+    } else {
+        timeusers.splice(timeusers.findIndex(user => user === user.userId), 1, { userId, socketId })
+    }
 }
 
 const removetimeUser = (socketId) => {
-    timeusers = timeusers.filter(user => user.socketId !== socketId)
+    timeusers = timeusers.filter(user => user.userId !== socketId)
 }
 
 
 
 io.on("connection", (socket) => {
-    console.log("a user connected.")
-    console.log(users)
-    
+
     //  take user id from the array
     socket.on("addUser", userId => {
         addUser(userId, socket.id)
@@ -43,30 +52,38 @@ io.on("connection", (socket) => {
 
     // send and get message
 
-    socket.on("sendMessage", ({senderId, receiverId, text}) => {
-        console.log(receiverId)
+    socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+
         const user = getUser(receiverId);
-        console.log("hello", user)
-        io.to(user?.socketId).emit("getMessage", {senderId, text: text})
+        console.log("getUser of receiver id provided", user)
+        console.log(users)
+        io.to(user?.socketId).emit("getMessage", { senderId, text: text })
     })
 
 
 
     socket.on("disconnect", () => {
         console.log("a user has disconnected!")
+        console.log(socket.id)
         removeUser(socket.id)
         removetimeUser(socket.id)
         io.emit("getUsers", users)
 
     })
 
-       //  take user id from the array
-       socket.on("addTimeUser", userId => {
-           console.log("hello", userId)
+    //  take user id from the array
+    socket.on("addTimeUser", userId => {
         addtimeUser(userId, socket.id)
         io.emit("getTimeUsers", timeusers)
+        console.log("connecting")
+
     })
 
+    socket.on("disconnectUser", (userId) => {
+        removetimeUser(userId)
+        io.emit("getTimeUsers", timeusers)
+        console.log("disconnecting")
+    })
 
 
 })

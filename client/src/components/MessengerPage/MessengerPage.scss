@@ -1,3 +1,9 @@
+
+@use "../../partials/typography" as *;
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+
 .messenger {
     height: 100vh;
     display: flex;
@@ -5,9 +11,12 @@
     &-chatMenu {
         flex: 3.5;
         padding: 10px;
-        background-color: blanchedalmond;
+        background-color: $cool;
+        margin: 10px;
+        border-radius: 4px;
         &-wrapper{
-
+            overflow-y: scroll;
+            height: 100%;
         }
         &__input {
             width: 90%;
@@ -19,8 +28,10 @@
     &-chatBox {
         flex: 5.5;
         padding: 10px;
-        background-color: rgb(175, 164, 148);
-
+        background-color: whitesmoke;
+        position: relative;
+        bottom: 20px;
+        border-radius: 5px;
         &-wrapper{
             display: flex;
             flex-direction: column;
@@ -60,10 +71,16 @@
     &-chatOnline {
         flex: 3.5;
         padding: 10px;
-        background-color: blanchedalmond;
-
+        background-color: $cool;
+        margin: 10px;
+        border-radius: 4px;
         &-wrapper{
             
         }
     }
+}
+
+.defaulttext{
+    text-align: center;
+    
 }

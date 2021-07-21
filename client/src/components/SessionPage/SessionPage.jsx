@@ -106,7 +106,6 @@ class SessionPage extends Component {
     })
   }
 
-  // currens session
 
   onSession = (session) => {
     this.setState({
@@ -115,18 +114,6 @@ class SessionPage extends Component {
 
   }
 
-  // Faces
-
- 
-
-  componentDidUpdate(prevProps, prevState) {
-
-    if (this.state.timerMinute === this.state.sessionTime && this.state.currentQuote.author === "Jon Barson, Web Dude" && this.state.isSession === true) {
-    
-
-      console.log("hello")
-    }
-  }
 
   render() {
 
@@ -134,11 +121,9 @@ class SessionPage extends Component {
       <>
       <HeroHeader/>
       <div className="root">
-        <div className="Educators">
-          <div>
-          </div>
-      <StudentsOnline/>
-        </div>
+        <h1>Timer</h1>
+      <StudentsOnline isSession={this.state.isSession}/>
+    
         <div className="increments">
           <SessionTime
             sessionTime={this.state.sessionTime}
@@ -165,6 +150,7 @@ class SessionPage extends Component {
             stopTimer={this.onPlayStopTime}
           />
         </div>
+        <button className="done" onClick = {() => this.props.history.push('/')}>Done!</button>
       </div>
             <HeroFooter/>
 </>

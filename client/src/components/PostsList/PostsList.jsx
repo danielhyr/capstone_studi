@@ -3,6 +3,7 @@ import SinglePost from '../SinglePost/SinglePost'
 import { useSelector } from 'react-redux'
 import EditModal from '../EditModal/EditModal'
 import './PostList.scss'
+import pencil from '../../data/images/twopencils.PNG'
 
 function PostsList({ setCurrentId, posts, whoose }) {
     const [show, setShow] = useState(false)
@@ -17,7 +18,7 @@ function PostsList({ setCurrentId, posts, whoose }) {
     }, [posts])
 
     const searchPost = () => {
-        const searchedpost = posts.filter(post => post.title.includes(search) || post.name.includes(search))
+        const searchedpost = posts.filter(post => post.title.toUpperCase().includes(search.toUpperCase()) || post.name.toUpperCase().includes(search.toUpperCase()))
         setPost(searchedpost)
     }
 
@@ -53,7 +54,9 @@ function PostsList({ setCurrentId, posts, whoose }) {
         <>
             <div className="posts">
                 <div className="posts__top">
+                <img className="posts__pencils"src = {pencil} alt = "two pencils vertically"/>
                 <h1>{whoose} Posts</h1>
+
                 <input
                 className="posts__top-input"
                     onChange={(e) => setSearch(e.target.value)}

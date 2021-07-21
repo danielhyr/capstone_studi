@@ -1,6 +1,5 @@
 import { Component } from "react";
 import "./TimerTime.scss";
-// import axios from "axios";
 
 class TimerTime extends Component {
     state = {

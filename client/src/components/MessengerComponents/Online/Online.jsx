@@ -1,50 +1,46 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 import './Online.scss'
+import * as api from '../../../api/index'
 
 function Online({ onlineUsers, currentId, setCurrentChat }) {
 
     const [following, setFollowing] = useState([])
     const [onlineFollowing, setOnlineFollowing] = useState([])
     const [offlineFollowing, setOfflineFollowing] = useState([])
-
+    const currentuser = JSON.parse(localStorage.getItem('profile'))
     useEffect(() => {
         const getFollowing = async () => {
-            const res = await axios.get(`/users/following/${currentId}`)
+            const res = await api.getFollowing(currentuser.result._id)
             setFollowing(res.data)
         }
         getFollowing()
     }, [])
 
 
-    useEffect(() => {
-        console.log(onlineUsers)
+    useEffect(async () => {
         console.log(following)
-        setOnlineFollowing(following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId))
-
-
-        console.log(following)
+       await setOnlineFollowing(following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId))
+       console.log("this", following.filter((f) => onlineUsers.includes(f.userId) && f.userId !== currentId).length)
     }, [following, onlineUsers])
 
     useEffect(async () => {
-        if (onlineFollowing === []) {
+        console.log(following)
+        console.log(onlineFollowing)
+        if (onlineFollowing.length === 0) {
+            console.log(following)
+            setOfflineFollowing(following)
+            console.log(offlineFollowing)
+        } else {
             const newArr = await onlineFollowing.map(f => f.userId)
             console.log(newArr)
             const offlineFollowing = following.filter(f => newArr.find(val => f.userId !== val))
-            setOfflineFollowing(offlineFollowing)
-        } else {
-            setOfflineFollowing(following)
-
-        }
-
-    }, [onlineFollowing])
+            setOfflineFollowing(offlineFollowing)        }
+    }, [following, onlineFollowing])
 
 
     const handleClick = async (user) => {
-        console.log(user)
         try {
-            const res = await axios.get(`/conversations/find/${currentId}/${user.userId}`)
-            console.log(res)
+            const res = await api.findConversation(currentId, user.userId)
             setCurrentChat(res.data)
             if (res.data === null) {
 
@@ -52,10 +48,8 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
                     senderId: currentId,
                     receiverId: user.userId
                 }
-                const res = await axios.post(`/conversations/`, newConvo)
+                const res = await api.createConversation(newConvo)
                 setCurrentChat(res.data)
-
-
             }
 
         } catch (error) {
@@ -64,7 +58,6 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
     }
 
 
-    console.log(following)
     return (
         <div className="online" >
             {onlineFollowing.map((o) => (

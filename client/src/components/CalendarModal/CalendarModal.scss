@@ -16,15 +16,37 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    z-index: 100;
     height: 100%;
 
+    &__closer{
+        position: absolute;
+        left: 20px;
+        top: 50px;
+        @include tablet {
+            top: 24px;
+        }
+    }
+
+    &__add{
+        background-color: $cooler;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    &__submit{
+        background-color: $cool;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
         &-form {
+            padding: 3rem;
             background-color: white;
             min-height: 300px;
             width: 100%;
             @include tablet {
-                min-height: 262px;
+                min-height: 300px;
                 width: auto;
                 width: 672px;
                 position: relative;
@@ -41,10 +63,12 @@
     justify-content: center;
     padding-top: 10px;
     max-width: 30rem;
-    margin: auto;
-    background-color: white;
+    margin: 16px auto;
+    background-color: $smoke;
     flex-direction: column;
     padding: 10px;
+    border-radius: 5px;
+
     @include tablet {
         flex-direction: row;
         max-width: 50%;

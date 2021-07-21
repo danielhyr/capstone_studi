@@ -1,37 +1,51 @@
 import { useEffect, useState, useRef } from 'react';
 import { io } from "socket.io-client";
 import axios from 'axios';
+import * as api from '../../../api/index'
 import './StudentsOnline.scss'
 
-function StudentsOnline() {
+function StudentsOnline({ isSession }) {
     const socket = useRef()
     const user = JSON.parse(localStorage.getItem('profile'))
     const [users, setUsers] = useState(null)
     const [timeusers, setTimeUsers] = useState(null)
 
 
-    console.log("hello")
     useEffect(() => {
         socket.current = io("ws://localhost:8900")
-        socket.current.emit("addTimeUser", user.result._id)
-        console.log("sutendstonline")
-        socket.current.on("getTimeUsers", timeusers => {
-            setTimeUsers(timeusers)
-        })
-    }, [])
+
+        if (isSession) {
+            socket.current.emit("addTimeUser", user.result._id)
+            socket.current.on("getTimeUsers", timeusers => {
+                console.log(timeusers)
+                setTimeUsers(timeusers)
+            })
+        } 
+        
+        else {
+            socket.current.emit("disconnectUser", user.result._id)
+            socket.current.on("getTimeUsers", timeusers => {
+                setTimeUsers(timeusers)
+            })
+        }
+        // socket.current = io("ws://localhost:8900")
+        // socket.current.emit("addTimeUser", user.result._id)
+        // console.log("sutendstonline")
+        // socket.current.on("getTimeUsers", timeusers => {
+        //     setTimeUsers(timeusers)
+        // })
+    }, [isSession])
 
     useEffect(async () => {
         const getusers = async () => {
             try {
-                const res = await axios.get("/users")
+                const res = await api.getFollowing(user.result._id)
                 const usersId = (timeusers).map(o => o.userId)
-
-                // Everyone who is online
-                const thisData = res.data.filter((student) => usersId.includes(student._id))
-                // This is the right one
-                // const thisData = res.data.filter((student) => usersId.includes(student._id)&&student._id !== user.result._id)
-
+                console.log(res.data)
+                console.log(usersId)
+                const thisData = res.data.filter((student) => usersId.forEach(id  => id === student.userId) )
                 console.log(thisData)
+
                 setUsers(thisData)
 
             } catch (error) {

@@ -3,10 +3,13 @@
 
 .singlecom {
     padding: 0.5rem;
-    width: 50%;
+    width: 100%;
     margin: auto;
     position: relative;
+        @include tablet {
+            width: 70%;
 
+        }
     &-prop{
         padding-left: 1rem;
     }
@@ -31,7 +34,10 @@
         flex-direction: column;
         justify-content: flex-start;
         border: 1px solid $mist;
-        padding: 1rem;
+        padding: 2rem;
+        border-radius: 5px;
+        background-color: white;
+        height: auto;
         @include tablet {
             flex-direction: row;
         }
@@ -40,15 +46,36 @@
         display: flex;
     }
     &-right{
-        width: 100px;
         text-align: center;
+        border-radius: 1px solid $cloud;
+        margin: 0px;
     }
     &__elem{
         margin: 0px;
+        font-weight: 600;
+        position: relative;
+        bottom: 8px;
     }
     &__date{
         position: absolute;
-        right: 16px;
-        top: -4px;
+        right: 24px;
+        top: 4px;
+        display: none;
+        color: $cloud;
+        @include tablet {
+            display: block;
+        }
+    }
+
+    &__del{
+        position: absolute;
+        width: 1.5rem;
+        right: 24px;
+        bottom: 24px;
+        &:hover{
+            transform: scale(1.2);
+            filter: invert(26%) sepia(76%) saturate(7471%) hue-rotate(355deg) brightness(99%) contrast(128%);
+          
+          }
     }
 }
