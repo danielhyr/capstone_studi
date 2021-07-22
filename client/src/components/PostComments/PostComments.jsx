@@ -3,8 +3,8 @@ import './PostComments.scss'
 import SingleComment from '../SingleComment/SingleComment'
 import * as api from '../../api/index'
 
-function PostComments({ show, postId }) {
-    const user = JSON.parse(localStorage.getItem('profile'))
+function PostComments({ show, postId, user }) {
+
 
     const [comments, setComments] = useState([])
 
@@ -21,7 +21,7 @@ function PostComments({ show, postId }) {
         e.preventDefault()
         const newComment = {
             text: e.target.text.value, timestamp: Date.now(),
-            image: user.result.image, name: user.result.name, posterId: user.result._id
+            image: user.image, name: user.name, posterId: user._id
         }
         try {
             const res = await api.postComment(postId, newComment)
@@ -36,7 +36,7 @@ function PostComments({ show, postId }) {
             <section className="commentWrap">
                 <form className="comments" onSubmit={onSubmit}>
                     <div className="comments-wrap">
-                        <img src={user.result.image} className="comments__image"></img>
+                        <img src={user?.image} className="comments__image"></img>
                     </div>
                     <textarea name="text" className="comments__text" required>
 

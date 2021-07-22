@@ -2,7 +2,8 @@
 @use '../../partials/mixin' as *;
 
 .post {
-    background-color: $smoke;
+
+    background-image: url('../../data//images/overall-background.jpg');
     border-radius: 4px;
     display: flex;
     justify-content: space-between;

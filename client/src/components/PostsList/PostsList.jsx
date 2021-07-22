@@ -5,7 +5,7 @@ import EditModal from '../EditModal/EditModal'
 import './PostList.scss'
 import pencil from '../../data/images/twopencils.PNG'
 
-function PostsList({ setCurrentId, posts, whoose }) {
+function PostsList({ setCurrentId, posts, whoose, user }) {
     const [show, setShow] = useState(false)
     const [id, setId] = useState(null)
     const [post, setPost] = useState(null)
@@ -66,7 +66,9 @@ function PostsList({ setCurrentId, posts, whoose }) {
                 }).map((post, index) => {
                     return (
                         <div key={index}>
-                            <SinglePost post={post} onSubmitHandler={onSubmitHandler} onDeleteHandler={onDeleteHandler} setCurrentId={setCurrentId} />
+                            <SinglePost post={post} onSubmitHandler={onSubmitHandler} onDeleteHandler={onDeleteHandler} setCurrentId={setCurrentId}
+                            user = {user}
+                            />
                         </div>
                     )
                 })}

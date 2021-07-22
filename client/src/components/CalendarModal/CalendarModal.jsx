@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField'
 import './CalendarModal.scss'
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/posts'
 import close from '../../data/Icons/close-24px.svg'
+import * as api from '../../api/index'
 
 
 function CalendarModal(props) {
-
+const loguser = JSON.parse(localStorage.getItem('profile'))
+  const [user, setUser] = useState();
+  const dispatch = useDispatch()
 
   const [inputField, setInputField] = useState({
     checked: false,
@@ -22,8 +25,20 @@ function CalendarModal(props) {
     ]
   })
 
-  const user = JSON.parse(localStorage.getItem('profile'))
-  const dispatch = useDispatch()
+
+  
+  useEffect(async () => {
+    try {
+      const res = await api.getSingleUser(loguser.result._id)
+      console.log(res)
+      setUser(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
+
+
 
 
   const handleSubmit = (e) => {
@@ -31,7 +46,7 @@ function CalendarModal(props) {
     props.onSubmitHandler(e)
     const newInputFields = {
       ...inputField,
-      name: user?.result.name, timestamp: Date.now(), image: user?.result.image, title: props.subject,
+      name: user?.name, timestamp: Date.now(), image: user?.image, title: props.subject, creator: loguser?.result._id,
       schedule: inputField.schedule.map(field => {
         return field;
       })
@@ -76,7 +91,7 @@ function CalendarModal(props) {
     return null
   }
 
-  if (!user?.result?.name) {
+  if (!user?.name) {
     return (
       <div>
         <h6> Please Sign In to share your schedules with others!</h6>

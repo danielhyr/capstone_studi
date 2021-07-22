@@ -7,6 +7,8 @@ import HeroHeader from '../HeroHeader/HeroHeader';
 import HeroFooter from '../HeroFooter/HeroFooter';
 import StudentsOnline from '../TimeComponents/StudentsOnline/StudentsOnline'
 import HeroImage from '../TimeComponents/HeroImage/HeroImage'
+import { motion } from 'framer-motion'
+
 class SessionPage extends Component {
 
   state = {
@@ -120,7 +122,11 @@ class SessionPage extends Component {
     return (
       <>
       <HeroHeader/>
-      <div className="root">
+      <motion.div className="root"
+       initial={{ opacity: 0 }}
+       animate = {{opacity: 1}}
+       exit = {{opacity: 0}}
+      >
         <HeroImage/>
       <StudentsOnline isSession={this.state.isSession}/>
     
@@ -156,7 +162,7 @@ class SessionPage extends Component {
               })
               this.props.history.push('/')
         } }>Done!</button>
-      </div>
+      </motion.div>
             <HeroFooter/>
 </>
       )

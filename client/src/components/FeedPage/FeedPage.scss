@@ -18,7 +18,10 @@
 .feed {
     padding: 16px;
     background-color: $light-grey;
+    background-image: url('../../data/images/beige-paper.jpg');
+    background-size: contain no-repeat;
     @include tablet {
         padding: 30px;
     }
+
 }

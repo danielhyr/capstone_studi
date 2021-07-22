@@ -1,5 +1,19 @@
+@use '../../../partials/variables' as *;
+@use '../../../partials/mixin' as *;
+
+
 .online {
         
+
+  &__on {
+    border-bottom: 0.5px solid green;
+  }
+
+  &__off {
+    border-bottom: 0.5px solid firebrick;
+
+  }
+
     &-Friend {
         display: flex;
         align-items: center;

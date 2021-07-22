@@ -3,6 +3,8 @@
 
 .allusers{
     padding: 16px;
+    background-image: url("../../data/images/beige-paper.jpg");
+    height: 100vh;
     @include tablet {
         padding: 50px;
     }

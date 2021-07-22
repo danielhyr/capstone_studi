@@ -4,6 +4,8 @@
 
 .profileOver{
     background-color: $back;
+    background-image: url('../../data/images/beige-paper.jpg');
+    background-size: contain no-repeat;
     @include tablet {
         padding: 30px;
     }
@@ -18,8 +20,8 @@
     flex-direction: column;
     margin:10px 10px 0px;
     background-image: url('../../data/images/login-background.jpg');
-    background-size: cover;
-    @include tablet{
+    background-size: contain no-repeat;
+    background-position: 25% 90%;    @include tablet{
         flex-direction: row;
         margin: 2rem 6rem;
         border: 1px solid $cloud;
@@ -89,7 +91,9 @@
         border-radius: 4px;
         background-color: $smoke;
         position: relative;
-
+        @include tablet {
+            margin-left: 16px;
+        }
         &__edit{
             padding: 5px 10px;
             border-radius: 6px;

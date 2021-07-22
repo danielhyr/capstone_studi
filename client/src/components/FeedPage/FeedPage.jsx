@@ -7,14 +7,32 @@ import { useSelector } from 'react-redux'
 
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getPosts} from '../../actions/posts'
+import { getPosts } from '../../actions/posts'
 import LoginPage from '../LoginPage/LoginPage'
 import HeroImage from '../HeroImage/HeroImage';
-function FeedPage({history}) {
+import { motion } from 'framer-motion'
+import * as api from '../../api/index'
 
-  const [currentId, setCurrentId] = useState(0);
+function FeedPage({ history }) {
+
+  const loguser = JSON.parse(localStorage.getItem('profile'))
   const posts = useSelector(state => state.posts)
   const dispatch = useDispatch()
+
+  const [user, setUser] = useState();
+  const [currentId, setCurrentId] = useState(0);
+
+
+
+  useEffect(async () => {
+    try {
+      const res = await api.getSingleUser(loguser.result._id)
+      setUser(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [loguser])
+
 
 
 
@@ -22,30 +40,34 @@ function FeedPage({history}) {
     dispatch(getPosts())
   }, [dispatch])
 
- 
-  const user = JSON.parse(localStorage.getItem('profile'))
-    return (
+
+  return (
+    <>
+
+      {loguser ? (
         <>
+   
+            <HeroHeader />
+            <section className="feed">
+              <motion.div className="feed-inside"
+                     initial={{ opacity: 0 }}
+                     animate = {{opacity: 1}}
+                     exit = {{opacity: 0}}>
+                <HeroImage />
+                <InitialForm />
 
-        {user ?(      
-          <>
-        <HeroHeader />
-        <section className="feed">
-          <HeroImage/>
-        <InitialForm />
-        
-        <PostsList whoose = {"All"} setCurrentId={setCurrentId} posts = {posts} />
+                <PostsList whoose={"All"} setCurrentId={setCurrentId} posts={posts} user = {user}/>
 
-     
-        </section>
-        <HeroFooter/>
+              </motion.div>
+            </section>
+            <HeroFooter />
         </>
-        ) : (
-         <LoginPage/>
-        )}
+      ) : (
+        <LoginPage />
+      )}
 
-        </>
-    )
+    </>
+  )
 }
 
 export default FeedPage

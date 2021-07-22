@@ -5,6 +5,7 @@ import { useHistory} from 'react-router-dom'
 import './UserList.scss'
 import * as api from '../../api/index'
 import axios from 'axios';
+import { motion } from 'framer-motion'
 
 
 function UserList() {
@@ -42,7 +43,11 @@ function UserList() {
 
         <>
             <HeroHeader />
-            <section className = "allusers">
+            <motion.section className = "allusers"
+                  initial={{ opacity: 0 }}
+                  animate = {{opacity: 1}}
+                  exit = {{opacity: 0}}
+            >
                 {users?.map(user =>
                 (
                     <form className="user" onSubmit={(e) => onFollow(e, user)} onClick={() => { history.push(`/profile/${user._id}`) } }>
@@ -60,7 +65,7 @@ function UserList() {
                         </div>
                     </form>
                 ))}
-            </section>
+            </motion.section>
             <HeroFooter />
         </>
     )

@@ -7,8 +7,7 @@
 }
 
 .header{
-    background-color: $cool;
-    display: flex;
+    background-image: url('../../data//images/overall-background.jpg');    display: flex;
     align-items: center;
     padding-bottom: $mobile-margins;
     padding: 14px 10px;
@@ -69,34 +68,28 @@
         }   
         }
         &__profile {
-            position: relative;
-        
-            width: 150%;
-            bottom: 9px;
-            right: 11px;
-
+            @include avatarMobile;
+            background-image: url("../../data/images/default.png");
+            width: 4rem;
+            height: 4rem;
+            border: 2px dashed black;
+            transition-duration: 1s;
+            &:hover  {
+                transform: scale(1.2)
+            }
         }
         &__link{
-            background-color: white;
-            @include avatarMobile;
-            text-decoration: none;
-            color: black;
-            text-align: center;
-            padding: 0.5rem;
-            overflow: hidden;
-            top: 3.2rem;
-            right: 16px;
-            background-image: url("../../data//images/default.png");
-            background-size: cover;
+ 
             @include tablet {
                 @include avatarMobile;
-                position: static;
-                margin:0;
 
+                position: relative  ;
+                margin:0;
+                width: 4rem;
+                height: 4rem;
 
             }
             &:hover {
-                background-color: black;
                 color: $white;
             }
         }
@@ -124,7 +117,7 @@
 }
 
 .showtrue {
-    background-color: skyblue;
+    background-color: lightblue;
     display: flex;
     flex-direction: column;
     list-style-type: none;

@@ -55,6 +55,8 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
     return (
         <div className="online" >
+                        <h3 className="online__on">Online</h3>
+
             {onlineFollowing?.map((o, index) => (
 
                 <div key = {index} className="online-Friend" onClick={() => handleClick(o)}>
@@ -71,6 +73,8 @@ function Online({ onlineUsers, currentId, setCurrentChat }) {
 
                 </div>
             ))}
+
+            <h3 className="online__off">Offline</h3>
             {offlineFollowing?.map((o, index) => (
 
                 <div key = {index} className="offline-Friend" onClick={() => handleClick(o)}>

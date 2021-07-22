@@ -54,6 +54,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
+            border-radius: 4px;
             @include tablet {
                 min-height: 262px;
                 width: auto;

@@ -21,6 +21,8 @@ function SinglePost(props) {
 
     const user = JSON.parse(localStorage.getItem('profile'))
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
         props.onSubmitHandler(e, props.post._id)
@@ -58,6 +60,9 @@ function SinglePost(props) {
     }
 
     const handleSmallClick = async (item) => {
+        console.log(post.creator)
+        console.log(user.result._id)
+
         if (post.creator === user.result._id) {
             if (!item.checked) {
                 const newPost = {
@@ -136,7 +141,7 @@ function SinglePost(props) {
                 </div>
 
                 <div className="post-standup">
-                    <h3 className="post-standup__header">The Standup</h3>
+                    <h3 className="post-standup__header">Standup:</h3>
                     <p className="post-standup__content">{props.post.title}</p>
                     <button className="post-standup__show" onClick={() => { show ? setShow(false) : setShow(true) }}>show comments</button>
                 </div>
@@ -174,7 +179,7 @@ function SinglePost(props) {
 
             </div>
 
-            <PostComments show={show} postId={props.post._id} />
+            <PostComments show={show} postId={props.post._id} user = {props.user}/>
 
         </>
     )

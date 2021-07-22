@@ -7,16 +7,27 @@
 .messenger {
     height: 100vh;
     display: flex;
+    background-image: url('../../data/images/beige-paper.jpg');
+    background-size: contain no-repeat;
+    flex-direction: column;
+    @include tablet {
+        flex-direction: row;
 
+    }
     &-chatMenu {
         flex: 3.5;
         padding: 10px;
         background-color: $cool;
         margin: 10px;
         border-radius: 4px;
+        background-image: url('../../data/images/login-background.jpg');
+    
+        background-size: contain no-repeat;
+        background-position: 25% 90%;
         &-wrapper{
             overflow-y: scroll;
             height: 100%;
+
         }
         &__input {
             width: 90%;
@@ -28,8 +39,8 @@
     &-chatBox {
         flex: 5.5;
         padding: 10px;
-        background-color: whitesmoke;
-        position: relative;
+        background-image: url('../../data/images/beige-paper.jpg');
+        background-size: contain no-repeat;        position: relative;
         bottom: 20px;
         border-radius: 5px;
         &-wrapper{
@@ -74,9 +85,14 @@
         background-color: $cool;
         margin: 10px;
         border-radius: 4px;
+        background-image: url('../../data/images/login-background.jpg');
+    
+        background-size: contain no-repeat;
+        background-position: 25% 90%;
         &__header{
          padding: 10px;   
          border-bottom: 1px solid slategray;
+         text-align: center;
         }
     }
 }

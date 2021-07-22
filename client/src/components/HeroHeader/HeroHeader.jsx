@@ -4,7 +4,7 @@ import { useLocation, useHistory, Link } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import decode from 'jwt-decode'
 import * as api from '../../api/index'
-
+import defaultimg from '../../data/images/default.png'
 import "./HeroHeader.scss";
 
 const HeroHeader = ({change}) => {
@@ -41,22 +41,22 @@ const HeroHeader = ({change}) => {
       console.log(error)
     }
   }, [change])
+  console.log(user.image)
 
   return (
     <nav className="nav" >
       <div className="header">
 
-        <h1 onClick={() => history.push('/')} className="header__logo">Standup</h1>
+        <h1 onClick={() => history.push('/')} className="header__logo">Standups</h1>
         <div className="header-container">
           <div className="header-container-input">
             <input type="search" name="search" className="header__search" placeholder="search"></input>
             <img className="header__search-img" src={Search} alt="search icon magnifying glass" onClick={() => history.push('/users')} />
           </div>
-
           {user ? (
             <div className="dropdown">
               <div className="header-container__link" onClick={dropDown}>
-                <img className="header-container__profile" src={user.image} ></img>
+                <img className="header-container__profile" src={user.image ? user.image : defaultimg} ></img>
               </div>
               <ul className={show}>
 

@@ -6,6 +6,8 @@ import './MessengerPage.scss'
 import Conversation from '../MessengerComponents/Conversation/Conversation';
 import Message from '../MessengerComponents/Message/Message';
 import Online from '../MessengerComponents/Online/Online';
+import { motion } from 'framer-motion'
+
 import * as api from '../../api/index'
 
 function MessengerPage() {
@@ -117,9 +119,16 @@ function MessengerPage() {
     return (
         <>
             <HeroHeader />
-            <div className="messenger">
+            <motion.div className="messenger"
+              initial={{ opacity: 0 }}
+              animate = {{opacity: 1}}
+              exit = {{opacity: 0}}
+            >
 
-                <div className="messenger-chatMenu">      <div className="messenger-chatMenu-wrapper">
+                <div className="messenger-chatMenu">   
+                <h2 className="messenger-chatOnline__header"> Previous Chats</h2>
+
+                   <div className="messenger-chatMenu-wrapper">
 
 
                     {conversations.map((c, index) => (
@@ -157,7 +166,7 @@ function MessengerPage() {
                                     <button className="messenger-chatBox-Bottom__button" onClick={handleSubmit}>Send</button>
                                 </div>
                             </>
-                            : <h1 className="defaulttext">Open an existing conversation from the left or start a new one from the right.</h1>}
+                            : <h1 className="defaulttext">Open an existing conversation or start a new one .</h1>}
                     </div>
                 </div>
 
@@ -169,7 +178,7 @@ function MessengerPage() {
                         setCurrentChat={setCurrentChat}
                     />
                 </div>
-            </div>
+            </motion.div>
             <HeroFooter />
         </>
     )

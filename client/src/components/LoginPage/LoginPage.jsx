@@ -40,7 +40,7 @@ function LoginPage() {
 
         <div className="body">
             <div className="main">
-                <p className="sign"><h1 className="sign__logo">Standup</h1></p>
+                <p className="sign"><h1 className="sign__logo">Standups</h1></p>
                 
                 <form className="form" onSubmit={handleSubmit}>
                     {

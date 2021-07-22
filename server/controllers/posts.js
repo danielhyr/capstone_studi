@@ -14,6 +14,7 @@ export const createPost = async (req, res) => {
     const post = req.body;
     console.log(post)
     const newPost = new Post({ ...post, creator: req.userId, createdAt: new Date().toISOString() });
+    console.log(req.userId)
     try {
         await newPost.save();
         res.status(201).json(newPost);

@@ -13,10 +13,11 @@
     border-radius: 4px;
     width: 60%;
     background-image: url("../../data/images/login-background.jpg");
-    background-size: cover;
+    background-size: contain no-repeat;
     background-position: 25% 90%;
     margin:3rem auto;
-
+    font-family: "Titillium";
+    font-style: italic;
     &__header {
         position:relative;
         color: rgb(17, 10, 10);

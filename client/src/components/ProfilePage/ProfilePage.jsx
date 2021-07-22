@@ -10,7 +10,7 @@ import PostsList from '../PostsList/PostsList';
 import ProfileModal from '../ProfileModal/ProfileModal'
 import './ProfilePage.scss'
 import * as api from '../../api/index'
-
+import {motion } from 'framer-motion'
 function ProfilePage(props) {
     const [currentId, setCurrentId] = useState(0);
     const posts = useSelector(state => state.posts)
@@ -70,11 +70,17 @@ function ProfilePage(props) {
         }
     }
 
+
     return (
-        <>
+    <>
+
             <HeroHeader change = {user}/>
 
-            <div className="profileOver">
+            <motion.div className="profileOver" 
+              initial={{ opacity: 0 }}
+              animate = {{opacity: 1}}
+              exit = {{opacity: 0}}
+            >
                 <section className="profile">
 
                     <div className="profile-right">
@@ -129,10 +135,11 @@ function ProfilePage(props) {
                 <PostsList whoose={`${user?.name}'s`} setCurrentId={setCurrentId} posts={userposts} />
                 <ProfileModal show={show} setShow={setShow} id={props.match.params.id}
                     user={user} setUser={setUser} />
-            </div>
+            </motion.div>
             <HeroFooter />
 
-        </>
+            </>
+
     )
 }
 
